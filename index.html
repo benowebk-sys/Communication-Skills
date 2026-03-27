@@ -28,11 +28,11 @@
             margin: 0;
         }
 
-        /* Header Styling */
+        /* Header Styling - More Compact */
         .header-glow {
             background: #000;
             border-bottom: 2px solid var(--accent-red);
-            box-shadow: 0 4px 20px rgba(255, 62, 62, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -41,16 +41,16 @@
         .header-text {
             font-family: 'Orbitron', sans-serif;
             color: var(--accent-red);
-            text-shadow: 0 0 10px var(--accent-red);
+            text-shadow: 0 0 8px var(--accent-red);
             letter-spacing: 1px;
         }
 
-        /* Bebo Section - More compact & Responsive */
+        /* Bebo Section - Compact */
         .bebo-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
         }
 
@@ -61,85 +61,85 @@
         .bebo-bubble {
             background: #161b25;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.8rem;
             color: #fff;
-            margin-bottom: 10px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            max-width: 85%;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            max-width: 80%;
             transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(8px);
             font-family: 'Tajawal', sans-serif;
             text-align: right;
             direction: rtl;
         }
 
         @media (min-width: 768px) {
-            .bebo-bubble { max-width: 350px; font-size: 0.9rem; }
+            .bebo-bubble { max-width: 300px; font-size: 0.85rem; }
         }
 
         .bebo-bubble.active { opacity: 1; transform: translateY(0); }
 
         .bebo-robot {
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             background: linear-gradient(145deg, #1e2532, #11161f);
-            border-radius: 18px;
+            border-radius: 15px;
             border: 1.5px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
             transition: all 0.4s ease;
         }
 
         @media (min-width: 768px) {
-            .bebo-robot { width: 75px; height: 75px; border-radius: 20px; }
+            .bebo-robot { width: 65px; height: 65px; border-radius: 18px; }
         }
 
-        .eyes-container { display: flex; gap: 10px; }
-        .eye { width: 8px; height: 8px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 10px var(--bebo-purple); transition: all 0.3s ease; }
+        .eyes-container { display: flex; gap: 8px; }
+        .eye { width: 7px; height: 7px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 8px var(--bebo-purple); transition: all 0.3s ease; }
         
-        .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 12px var(--bebo-green); border-radius: 50% 50% 0 0; height: 5px; }
-        .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 12px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
+        .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
+        .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
         .bebo-robot.error .eye:last-child { transform: rotate(15deg); }
         .bebo-robot.warning .eye { background: var(--bebo-purple); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
         .bebo-robot.warning .eye:last-child { transform: rotate(15deg); }
-        .bebo-robot.ready .eye { background: var(--bebo-green); box-shadow: 0 0 12px var(--bebo-green); width: 8px; height: 8px; }
+        .bebo-robot.ready .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); width: 7px; height: 7px; }
 
         /* Compact Card Styling */
         .quiz-card {
             background: var(--card-shiny);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 1.25rem;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             position: relative;
         }
 
         @media (min-width: 768px) {
-            .quiz-card { padding: 2rem; border-radius: 24px; }
+            .quiz-card { padding: 1.75rem; border-radius: 20px; }
         }
 
         .option-btn {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 0.85rem;
-            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             transition: all 0.2s ease;
             font-weight: 500;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         @media (min-width: 768px) {
-            .option-btn { padding: 1rem; font-size: 0.95rem; }
+            .option-btn { padding: 0.85rem 1.25rem; font-size: 0.9rem; }
         }
 
         .option-btn:hover:not(:disabled) {
@@ -152,12 +152,12 @@
         .option-btn.wrong { background: #ef4444 !important; border-color: #dc2626 !important; color: white; }
 
         .nav-btn {
-            padding: 0.75rem 1.25rem;
-            border-radius: 10px;
+            padding: 0.6rem 1.1rem;
+            border-radius: 8px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             transition: 0.2s;
         }
 
@@ -165,14 +165,14 @@
             height: 3px;
             background: #1e2530;
             border-radius: 2px;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background: var(--accent-red);
-            box-shadow: 0 0 8px var(--accent-red);
+            box-shadow: 0 0 6px var(--accent-red);
             transition: width 0.4s ease;
         }
 
@@ -181,35 +181,35 @@
             background: linear-gradient(45deg, #ff3e3e, #ff8e8e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 1.25rem;
-            letter-spacing: 2px;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
         }
 
         .percentage-ring {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #fff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+            text-shadow: 0 0 12px rgba(255,255,255,0.2);
         }
     </style>
 </head>
 <body>
 
-    <header class="header-glow py-4 px-5">
+    <header class="header-glow py-3 px-5">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="header-text text-lg md:text-xl font-bold uppercase">Communication Skills</h1>
-            <div id="score-pill" class="bg-red-900/30 border border-red-500/40 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest">
+            <h1 class="header-text text-base md:text-lg font-bold uppercase tracking-tight">Communication Skills</h1>
+            <div id="score-pill" class="bg-red-900/30 border border-red-500/40 px-3 py-1 rounded-full text-red-500 text-[10px] font-bold tracking-widest">
                 SCORE: 0
             </div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 max-w-2xl py-8 md:py-10">
+    <main class="flex-grow container mx-auto px-4 max-w-xl py-6 md:py-8">
         
         <!-- Bebo Smart Assistant -->
         <div class="bebo-section">
-            <div id="bebo-bubble" class="bebo-bubble">Initializing...</div>
+            <div id="bebo-bubble" class="bebo-bubble">Loading...</div>
             <div id="bebo-robot" class="bebo-robot">
                 <div class="eyes-container">
                     <div class="eye"></div>
@@ -223,59 +223,58 @@
                 <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
             </div>
 
-            <div class="flex justify-between items-center mb-4">
-                <button onclick="toggleHint()" class="text-blue-400 text-[10px] font-bold uppercase tracking-widest hover:text-blue-300 transition flex items-center gap-2">
-                    <i class="fas fa-lightbulb"></i> View Hint
+            <div class="flex justify-between items-center mb-3">
+                <button onclick="toggleHint()" class="text-blue-400 text-[9px] font-bold uppercase tracking-widest hover:text-blue-300 transition flex items-center gap-1.5">
+                    <i class="fas fa-lightbulb"></i> Hint
                 </button>
-                <div class="text-[10px] text-slate-500 uppercase font-bold">Question <span id="q-idx">1</span> of 30</div>
+                <div class="text-[9px] text-slate-500 uppercase font-bold">Q <span id="q-idx">1</span> / 30</div>
             </div>
             
-            <div id="hint-box" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-3 rounded-r-lg mb-5">
-                <p id="hint-text" class="text-xs text-slate-300 italic"></p>
+            <div id="hint-box" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-2.5 rounded-r-lg mb-4">
+                <p id="hint-text" class="text-[11px] text-slate-300 italic"></p>
             </div>
 
             <div class="quiz-card">
-                <h2 id="question-body" class="text-base md:text-lg font-semibold leading-relaxed mb-6 md:mb-8 text-white"></h2>
-                <div id="options-container" class="grid gap-3"></div>
+                <h2 id="question-body" class="text-sm md:text-base font-semibold leading-snug mb-5 md:mb-6 text-white"></h2>
+                <div id="options-container" class="grid gap-2.5"></div>
             </div>
 
             <!-- Optimized Navigation Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 mt-5">
                 <button onclick="handleBack()" class="nav-btn bg-slate-800 hover:bg-slate-700 border border-white/5 order-1">
                     <i class="fas fa-chevron-left mr-1"></i> Prev
                 </button>
-                <button onclick="handleSkip()" class="nav-btn bg-slate-800 hover:bg-slate-700 border border-white/5 order-2">
+                <button onclick="handleSkip()" class="nav-btn bg-slate-800 hover:bg-slate-700 border border-white/5 order-2 md:order-2">
                     Skip <i class="fas fa-forward ml-1"></i>
                 </button>
-                <button onclick="handleNext()" id="next-btn" class="nav-btn bg-red-600 hover:bg-red-500 shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3">
+                <button onclick="handleNext()" id="next-btn" class="nav-btn bg-red-600 hover:bg-red-500 shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3 md:order-3">
                     Next <i class="fas fa-chevron-right ml-1"></i>
                 </button>
             </div>
         </div>
 
         <!-- Result View -->
-        <div id="result-view" class="hidden text-center py-6">
+        <div id="result-view" class="hidden text-center py-4">
             <div class="percentage-ring mb-1" id="final-pct">0%</div>
-            <p class="text-slate-400 uppercase tracking-widest text-[10px] mb-8">Performance Accuracy</p>
+            <p class="text-slate-400 uppercase tracking-widest text-[9px] mb-6">Efficiency Accuracy</p>
             
-            <div class="quiz-card mb-8 inline-block w-full">
-                <p id="final-bebo-msg" class="text-base font-medium text-emerald-400 italic mb-4" style="font-family: 'Tajawal'; direction: rtl;"></p>
-                <div class="text-slate-500 text-xs">Total: <span id="final-raw-score" class="text-white font-bold"></span> Correct Answers</div>
+            <div class="quiz-card mb-6 inline-block w-full">
+                <p id="final-bebo-msg" class="text-sm font-medium text-emerald-400 italic mb-3" style="font-family: 'Tajawal'; direction: rtl;"></p>
+                <div class="text-slate-500 text-[10px]">Total Score: <span id="final-raw-score" class="text-white font-bold"></span> Correct</div>
             </div>
             
-            <button onclick="location.reload()" class="bg-white text-black px-10 py-3 rounded-full font-bold hover:scale-105 transition tracking-widest text-xs">RESTART</button>
+            <button onclick="location.reload()" class="bg-white text-black px-8 py-2.5 rounded-full font-bold hover:scale-105 transition tracking-widest text-[10px]">RESTART</button>
         </div>
 
     </main>
 
-    <footer class="py-8 text-center mt-auto border-t border-white/5">
-        <p class="text-slate-600 text-[12px] uppercase tracking-[1em] mb-2">Developer by</p>
+    <footer class="py-6 text-center mt-auto border-t border-white/5">
+        <p class="text-slate-600 text-[7px] uppercase tracking-[0.5em] mb-1.5">Developer by</p>
         <div class="bilal-signature">BILAL MOHAMED</div>
     </footer>
 
     <script>
         const quizData = [
-            // All 30 Questions Integrated
             { q: "Which components are essential for a persuasive presentation?", a: 1, options: ["Only logical arguments", "Emotional appeals and logical arguments", "Non-verbal cues only", "Technical data without emotional context"], hint: "Persuasion needs both logic and emotion." },
             { q: "When planning a presentation, what is the first step that should be taken?", a: 1, options: ["Identifying audience needs", "Defining the primary purpose", "Designing the visual slides", "Practicing the delivery tone"], hint: "Purpose comes before mapping audience needs." },
             { q: "To maintain coherence in a presentation, all content sections must be aligned with:", a: 2, options: ["The audience’s personal hobbies", "The speaker's non-verbal cues", "The main goal", "The physical environment"], hint: "The main goal is the anchor for coherence." },
@@ -288,7 +287,7 @@
             { q: "Using 'vivid language' is an example of which type of communication?", a: 2, options: ["Non-verbal communication", "Visual communication", "Verbal communication", "Physical communication"], hint: "The structure of words is verbal." },
             { q: "Communication between two peer developers at the same organizational level is known as:", a: 2, options: ["Vertical Communication", "Upward Communication", "Horizontal Communication", "Downward Communication"], hint: "Equals communicate horizontally." },
             { q: "What is the primary purpose of Upward Vertical Communication?", a: 1, options: ["To issue commands to subordinates", "To provide feedback to leaders about progress or challenges", "To chat with peers about social events", "To eliminate the need for horizontal flows"], hint: "Sending info up to management." },
-            { q: "To ensure clarity across all departments, effective organizations must rely on:", a: 2, options: ["Only vertical communication flows", "Only horizontal communication flows", "Both vertical and horizontal communication flows", "Informal communication only"], hint: "Multiple directions ensure zero gaps." },
+            { q: "To ensure clarity across all departments, effective organizations must rely on:", a: 2, options: ["Only vertical communication flows", "Only horizontal communication flows", "Both vertical and horizontal communication flows", "Informal communication only"], hint: "Multi-directional flow is required." },
             { q: "In a technical context, the term 'Scaling' is synonymous with:", a: 1, options: ["Legacy", "Growing", "Debugging", "Archiving"], hint: "Scaling is growth." },
             { q: "If a developer refers to an 'outdated system,' they are likely describing a:", a: 1, options: ["Scaled system", "Legacy system", "Horizontal system", "Coherent system"], hint: "Old systems are Legacy." },
             { q: "What does the first P in the PREP framework stand for?", a: 1, options: ["Purpose", "Point", "Plan"], hint: "Make your primary Point first." },
@@ -318,8 +317,9 @@
             intro: ["يا هلا يا هلا ", "مرحبا اسمي بيبو جاهز لبدا الاختبار ؟.", "نجم النجوم حمدلله على السلامه يعم ."],
             correct: ["يسلام عليك وانت ملعلع كده ايوا ستمر عاش.", "ايوا كده عاوزك تفرتك الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين يسطا خف دح  شويه .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتوره مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
             wrong: ["معلش معلش هتيجى المره الجايه.", "ركز بس هتيجى هتيجى.", "انت متقل فى الفطار شكلك.", "اشرب شاى وروق كده.", "خف اكل كحك هتتخن ومخك هيكبر.","ركز يسطا الامتحان كبير .","وقد ياتيك الوقت الشخص فى الصح الخطاء زي الى بتعملو فيا ده.","قوم اعملنا شاى يسطا الله يكرمك.","تنام طيب يمكن تركز شويه.","هات اخرك ولا يهمك .","انت هتجيب اخرى انا كده.","شوف التلميح يمكن تظبط معاك.","شغلانه متعبه انا عارف.","ركز بس ركز.",],
-            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا ولااى متفوق يعم انت بتغرق كده.", "ادائك ده يدرس حقيقى اى الضحك ده يسطا.", "انت بتهزر يبنى اى ده انت كده مش هتحصل تجيب درجه حراره حتى.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","الموكوس وخايب الرجا لما يقعدو مع بعض .","جلنف جلنف يعنى مفيش كلام.","ركز يا مسطول .","عارف الحيا هتحلو امتى لما تتنيل تذاكر ."],
+            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا ولا متفوق يعم انت بتغرق كده.", "ادائك ده يدرس حقيقى اى الضحك ده يسطا.", "انت بتهزر يبنى اى ده انت كده مش هتحصل تجيب درجه حراره حتى.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","الموكوس وخايب الرجا لما يقعدو مع بعض .","جلنف جلنف يعنى مفيش كلام.","ركز يا مسطول .","عارف الحيا هتحلو امتى لما تتنيل تذاكر ."],
             fast: ["اقرا السؤال الاول يا جلنف.", "مستعجل على يا اخويا  اقرا السؤال الاول.", "هو حد بيجرى وراك ولا اى.", "خد نفسك واقرا السؤال الاول."],
+            complete: ["اخيرا خلصنا روح يعم يلا شوف ماده غيرى", "تمام كده، يلا على النتيجة", "شوف نتيجتك "],
             resultsAdvice: [
                 "نتيجتك دى يسطا ولا درجه حراره.",
                 "منت لو تبص على التلميحات وانت بتحل مكنتش جبت درجات الحراره دى.",
@@ -371,7 +371,7 @@
             data.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
-                btn.innerHTML = `<span class="bg-white/5 w-6 h-6 rounded-lg flex items-center justify-center font-bold text-[10px]">${String.fromCharCode(65 + i)}</span> <span>${opt}</span>`;
+                btn.innerHTML = `<span class="bg-white/5 w-6 h-6 rounded-lg flex items-center justify-center font-bold text-[9px]">${String.fromCharCode(65 + i)}</span> <span>${opt}</span>`;
                 
                 if (answered) {
                     btn.disabled = true;
@@ -434,7 +434,6 @@
 
         function finish() {
             document.getElementById('quiz-ui').classList.add('hidden');
-            document.getElementById('bebo-bubble').classList.remove('active');
             document.getElementById('result-view').classList.remove('hidden');
             
             const pct = Math.round((score / quizData.length) * 100);
@@ -443,21 +442,25 @@
             
             const msgEl = document.getElementById('final-bebo-msg');
             const robot = document.getElementById('bebo-robot');
+            const bubble = document.getElementById('bebo-bubble');
 
+            // Set specific card message
+            let finalCardMsg;
             if (pct >= 85) {
                 const msgs = beboMessages.resultsSuccess;
-                const msg = msgs[Math.floor(Math.random() * msgs.length)];
-                msgEl.innerText = msg;
+                finalCardMsg = msgs[Math.floor(Math.random() * msgs.length)];
                 robot.className = "bebo-robot success";
-                document.getElementById('bebo-bubble').innerText = msg;
             } else {
                 const msgs = beboMessages.resultsAdvice;
-                const msg = msgs[Math.floor(Math.random() * msgs.length)];
-                msgEl.innerText = msg;
+                finalCardMsg = msgs[Math.floor(Math.random() * msgs.length)];
                 robot.className = "bebo-robot error";
-                document.getElementById('bebo-bubble').innerText = msg;
             }
-            document.getElementById('bebo-bubble').classList.add('active');
+            msgEl.innerText = finalCardMsg;
+
+            // Set DIFFERENT bubble message using 'complete' category
+            const completeMsgs = beboMessages.complete;
+            bubble.innerText = completeMsgs[Math.floor(Math.random() * completeMsgs.length)];
+            bubble.classList.add('active');
         }
 
         window.onload = init;
