@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Skills | Interactive Assessment</title>
+    <title>Communication Skills | Bebo Assessment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -28,7 +28,7 @@
             margin: 0;
         }
 
-        /* Header Styling - More Compact */
+        /* Pro Header */
         .header-glow {
             background: #000;
             border-bottom: 2px solid var(--accent-red);
@@ -45,8 +45,8 @@
             letter-spacing: 1px;
         }
 
-        /* Bebo Section - Compact */
-        .bebo-section {
+        /* Bebo Section */
+        .bebo-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,29 +55,26 @@
         }
 
         @media (min-width: 768px) {
-            .bebo-section { align-items: flex-end; }
+            .bebo-wrapper { align-items: flex-end; }
         }
 
         .bebo-bubble {
             background: #161b25;
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
             color: #fff;
             margin-bottom: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            max-width: 80%;
+            max-width: 85%;
             transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(8px);
+            transform: translateY(10px);
             font-family: 'Tajawal', sans-serif;
             text-align: right;
             direction: rtl;
-        }
-
-        @media (min-width: 768px) {
-            .bebo-bubble { max-width: 300px; font-size: 0.85rem; }
+            pointer-events: none;
         }
 
         .bebo-bubble.active { opacity: 1; transform: translateY(0); }
@@ -93,10 +90,17 @@
             justify-content: center;
             box-shadow: 0 6px 15px rgba(0,0,0,0.5);
             transition: all 0.4s ease;
+            position: relative;
         }
 
-        @media (min-width: 768px) {
-            .bebo-robot { width: 65px; height: 65px; border-radius: 18px; }
+        .bebo-robot.flash-active {
+            animation: robotFlash 0.5s ease;
+        }
+
+        @keyframes robotFlash {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.5); box-shadow: 0 0 20px var(--accent-red); }
+            100% { filter: brightness(1); }
         }
 
         .eyes-container { display: flex; gap: 8px; }
@@ -105,74 +109,51 @@
         .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
         .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
         .bebo-robot.error .eye:last-child { transform: rotate(15deg); }
-        .bebo-robot.warning .eye { background: var(--bebo-purple); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
-        .bebo-robot.warning .eye:last-child { transform: rotate(15deg); }
-        .bebo-robot.ready .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); width: 7px; height: 7px; }
+        .bebo-robot.ready .eye { background: var(--bebo-green); width: 7px; height: 7px; box-shadow: 0 0 8px var(--bebo-green); }
 
-        /* Compact Card Styling */
+        /* Assessment Card */
         .quiz-card {
             background: var(--card-shiny);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 1.25rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .quiz-card { padding: 1.75rem; border-radius: 20px; }
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.07);
             padding: 0.75rem 1rem;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
+            border-radius: 8px;
             transition: all 0.2s ease;
-            font-weight: 500;
             text-align: left;
             font-size: 0.85rem;
+            width: 100%;
         }
 
-        @media (min-width: 768px) {
-            .option-btn { padding: 0.85rem 1.25rem; font-size: 0.9rem; }
-        }
-
-        .option-btn:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
+        .option-btn:hover:not(.locked) {
+            background: rgba(255, 255, 255, 0.05);
             transform: translateX(3px);
         }
 
-        .option-btn.correct { background: #10b981 !important; border-color: #059669 !important; color: white; }
-        .option-btn.wrong { background: #ef4444 !important; border-color: #dc2626 !important; color: white; }
+        .option-btn.correct { background: #059669 !important; border-color: #10b981 !important; color: white; }
+        .option-btn.wrong { background: #dc2626 !important; border-color: #ef4444 !important; color: white; }
+        .option-btn.locked { cursor: default; }
 
-        .nav-btn {
-            padding: 0.6rem 1.1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.7rem;
-            transition: 0.2s;
-        }
+        .bulb-icon { transition: all 0.3s; color: #4b5563; }
+        .bulb-active { color: #facc15; filter: drop-shadow(0 0 5px #facc15); }
 
         .progress-line {
             height: 3px;
             background: #1e2530;
             border-radius: 2px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background: var(--accent-red);
-            box-shadow: 0 0 6px var(--accent-red);
             transition: width 0.4s ease;
         }
 
@@ -182,15 +163,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 1.1rem;
-            letter-spacing: 1.5px;
-        }
-
-        .percentage-ring {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            letter-spacing: 2px;
             font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 12px rgba(255,255,255,0.2);
         }
     </style>
 </head>
@@ -205,11 +179,11 @@
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 max-w-xl py-6 md:py-8">
+    <main class="flex-grow container mx-auto px-4 max-w-xl py-6">
         
-        <!-- Bebo Smart Assistant -->
-        <div class="bebo-section">
-            <div id="bebo-bubble" class="bebo-bubble">Loading...</div>
+        <!-- Bebo Section -->
+        <div class="bebo-wrapper">
+            <div id="bebo-bubble" class="bebo-bubble">يا هلا يا هلا</div>
             <div id="bebo-robot" class="bebo-robot">
                 <div class="eyes-container">
                     <div class="eye"></div>
@@ -218,119 +192,113 @@
             </div>
         </div>
 
-        <div id="quiz-ui">
+        <div id="quiz-container">
             <div class="progress-line">
                 <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
             </div>
 
             <div class="flex justify-between items-center mb-3">
-                <button onclick="toggleHint()" class="text-blue-400 text-[9px] font-bold uppercase tracking-widest hover:text-blue-300 transition flex items-center gap-1.5">
-                    <i class="fas fa-lightbulb"></i> Hint
+                <button onclick="toggleHint()" class="text-blue-400 text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                    <i class="fas fa-lightbulb bulb-icon"></i> Reveal Hint
                 </button>
-                <div class="text-[9px] text-slate-500 uppercase font-bold">Q <span id="q-idx">1</span> / 30</div>
+                <div id="question-number" class="text-[9px] text-slate-500 uppercase font-bold"></div>
             </div>
             
-            <div id="hint-box" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-2.5 rounded-r-lg mb-4">
-                <p id="hint-text" class="text-[11px] text-slate-300 italic"></p>
+            <div id="hint-text" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-2.5 rounded-r-lg mb-4 text-[11px] text-slate-300 italic">
             </div>
 
             <div class="quiz-card">
-                <h2 id="question-body" class="text-sm md:text-base font-semibold leading-snug mb-5 md:mb-6 text-white"></h2>
+                <h2 id="question-text" class="text-sm md:text-base font-semibold leading-snug mb-5 text-white"></h2>
                 <div id="options-container" class="grid gap-2.5"></div>
             </div>
 
-            <!-- Optimized Navigation Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 mt-5">
-                <button onclick="handleBack()" class="nav-btn bg-slate-800 hover:bg-slate-700 border border-white/5 order-1">
+                <button onclick="prevQuestion()" id="prev-btn" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5">
                     <i class="fas fa-chevron-left mr-1"></i> Prev
                 </button>
-                <button onclick="handleSkip()" class="nav-btn bg-slate-800 hover:bg-slate-700 border border-white/5 order-2 md:order-2">
+                <button onclick="nextQuestion()" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5 order-2 md:order-2">
                     Skip <i class="fas fa-forward ml-1"></i>
                 </button>
-                <button onclick="handleNext()" id="next-btn" class="nav-btn bg-red-600 hover:bg-red-500 shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3 md:order-3">
+                <button onclick="nextQuestion()" id="next-btn" class="bg-red-600 hover:bg-red-500 py-2 rounded-lg text-xs font-bold uppercase shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3 md:order-3">
                     Next <i class="fas fa-chevron-right ml-1"></i>
                 </button>
             </div>
         </div>
 
         <!-- Result View -->
-        <div id="result-view" class="hidden text-center py-4">
-            <div class="percentage-ring mb-1" id="final-pct">0%</div>
+        <div id="result-view" class="hidden text-center py-6">
+            <div class="text-4xl font-bold font-mono mb-1 text-white" id="final-score">0%</div>
             <p class="text-slate-400 uppercase tracking-widest text-[9px] mb-6">Efficiency Accuracy</p>
             
-            <div class="quiz-card mb-6 inline-block w-full">
-                <p id="final-bebo-msg" class="text-sm font-medium text-emerald-400 italic mb-3" style="font-family: 'Tajawal'; direction: rtl;"></p>
-                <div class="text-slate-500 text-[10px]">Total Score: <span id="final-raw-score" class="text-white font-bold"></span> Correct</div>
+            <div class="quiz-card mb-6">
+                <p id="result-message" class="text-sm font-medium text-emerald-400 italic" style="font-family: 'Tajawal'; direction: rtl;"></p>
             </div>
             
-            <button onclick="location.reload()" class="bg-white text-black px-8 py-2.5 rounded-full font-bold hover:scale-105 transition tracking-widest text-[10px]">RESTART</button>
+            <button onclick="restartQuiz()" class="bg-white text-black px-8 py-2.5 rounded-full font-bold hover:scale-105 transition tracking-widest text-[10px]">RESTART TEST</button>
         </div>
 
     </main>
 
     <footer class="py-6 text-center mt-auto border-t border-white/5">
-        <p class="text-slate-600 text-[7px] uppercase tracking-[0.5em] mb-1.5">Developer by</p>
+        <p class="text-slate-600 text-[7px] uppercase tracking-[0.4em] mb-1.5">Developer</p>
         <div class="bilal-signature">BILAL MOHAMED</div>
     </footer>
 
     <script>
         const quizData = [
-            { q: "Which components are essential for a persuasive presentation?", a: 1, options: ["Only logical arguments", "Emotional appeals and logical arguments", "Non-verbal cues only", "Technical data without emotional context"], hint: "Persuasion needs both logic and emotion." },
-            { q: "When planning a presentation, what is the first step that should be taken?", a: 1, options: ["Identifying audience needs", "Defining the primary purpose", "Designing the visual slides", "Practicing the delivery tone"], hint: "Purpose comes before mapping audience needs." },
-            { q: "To maintain coherence in a presentation, all content sections must be aligned with:", a: 2, options: ["The audience’s personal hobbies", "The speaker's non-verbal cues", "The main goal", "The physical environment"], hint: "The main goal is the anchor for coherence." },
-            { q: "What is considered a hallmark of effective eye contact during a speech?", a: 1, options: ["Staring at a single person to show focus", "Scanning the room to include the entire audience", "Looking only at the top of the audience's heads", "Constantly looking at the slides for reference"], hint: "Inclusion is the goal of eye contact." },
-            { q: "Which of the following is true regarding eye contact and persuasion?", a: 2, options: ["Constant eye contact without breaking is the most effective method.", "Avoiding eye contact helps the audience focus on the data.", "Scanning the room helps the audience feel included in the message.", "Eye contact is considered a verbal communication technique."], hint: "Inclusive scanning builds trust." },
-            { q: "Confidence in a presentation's delivery is primarily conveyed through:", a: 1, options: ["The complexity of the vocabulary", "Non-verbal cues like posture and tone", "The number of slides provided", "The use of vivid language"], hint: "Your tone and posture speak before you do." },
-            { q: "In digital communication, how are issues like a 'fixed screen' or a 'bad microphone' categorized?", a: 2, options: ["Psychological Noise", "Semantic Noise", "Physical Noise", "Feedback Loops"], hint: "Hardware issues are physical barriers." },
-            { q: "According to the 'Personal Brand' case study, what is often mistakenly viewed as the 'ultimate professional currency'?", a: 1, options: ["Soft skills", "Technical brilliance", "Emotional intelligence", "Networking"], hint: "People often rely too much on technical skill alone." },
-            { q: "Feedback is widely considered to be a ________ element in the communication process.", a: 2, options: ["Optional", "Negative", "Critical", "Secondary"], hint: "Essential for verifying understanding." },
-            { q: "Using 'vivid language' is an example of which type of communication?", a: 2, options: ["Non-verbal communication", "Visual communication", "Verbal communication", "Physical communication"], hint: "The structure of words is verbal." },
-            { q: "Communication between two peer developers at the same organizational level is known as:", a: 2, options: ["Vertical Communication", "Upward Communication", "Horizontal Communication", "Downward Communication"], hint: "Equals communicate horizontally." },
-            { q: "What is the primary purpose of Upward Vertical Communication?", a: 1, options: ["To issue commands to subordinates", "To provide feedback to leaders about progress or challenges", "To chat with peers about social events", "To eliminate the need for horizontal flows"], hint: "Sending info up to management." },
-            { q: "To ensure clarity across all departments, effective organizations must rely on:", a: 2, options: ["Only vertical communication flows", "Only horizontal communication flows", "Both vertical and horizontal communication flows", "Informal communication only"], hint: "Multi-directional flow is required." },
-            { q: "In a technical context, the term 'Scaling' is synonymous with:", a: 1, options: ["Legacy", "Growing", "Debugging", "Archiving"], hint: "Scaling is growth." },
-            { q: "If a developer refers to an 'outdated system,' they are likely describing a:", a: 1, options: ["Scaled system", "Legacy system", "Horizontal system", "Coherent system"], hint: "Old systems are Legacy." },
-            { q: "What does the first P in the PREP framework stand for?", a: 1, options: ["Purpose", "Point", "Plan"], hint: "Make your primary Point first." },
-            { q: "Which component of PREP involves providing a specific instance or evidence?", a: 1, options: ["Reason", "Example", "Practice"], hint: "E is for Example." },
-            { q: "Which rhetorical appeal focuses on logic, reason, and proof?", a: 2, options: ["Ethos", "Pathos", "Logos"], hint: "Logos stands for logic." },
-            { q: "Using personal branding and showing confidence in delivery is a technique of:", a: 1, options: ["Logos", "Ethos", "Pathos"], hint: "Ethos is character-based." },
-            { q: "Which type of presentation focuses on step-by-step explanations and demonstrations?", a: 2, options: ["Informative", "Persuasive", "Instructional"], hint: "Teaching a process is Instructional." },
-            { q: "What is the first step in defining a presentation's purpose?", a: 1, options: ["Setting a timer", "Identifying audience needs", "Writing a conclusion"], hint: "Map your audience first." },
-            { q: "A 'bad microphone' or a 'notification popping up' are examples of:", a: 2, options: ["Semantic Noise", "Psychological Noise", "Physical Noise"], hint: "Hardware disruptions." },
-            { q: "Instructional presentations are designed to facilitate:", a: 1, options: ["Sales", "Learning and practical application", "Data storage"], hint: "Designed for learning." },
-            { q: "To maintain Ethos when a project is delayed, how should you structure your 'Reason'?", a: 1, options: ["Blame the synchronization error on the software vendor.", "Explain that you prioritized data integrity over speed.", "Downplay the delay as a minor administrative hiccup."], hint: "Show integrity via professional values." },
-            { q: "In the 4-day work week argument, which Pathos element is most effective?", a: 0, options: ["Describing the 'surviving' feeling of a Thursday afternoon.", "Listing the exact number of hours saved per month.", "Referencing a legal study on labor laws."], hint: "Pathos is about shared feelings." },
-            { q: "Self-running tasks stand for which technical jargon?", a: 0, options: ["Automation features", "Backend architecture", "Latency"], hint: "No human input means automation." },
-            { q: "Which element is responsible for 'translating complexity into clarity' before sending?", a: 1, options: ["The receiver", "The sender", "The channel"], hint: "Sender encodes the message." },
-            { q: "A 'frozen screen' represents a failure in which element?", a: 2, options: ["The message", "The sender", "The medium / channel"], hint: "The transmission channel failed." },
-            { q: "When a listener provides a confused expression, they are providing:", a: 1, options: ["Semantic Noise", "Feedback", "Encoding"], hint: "This is non-verbal feedback." },
-            { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Stress is a psychological barrier." }
+            { q: "Which components are essential for a persuasive presentation?", a: 1, options: ["Only logical arguments", "Emotional appeals and logical arguments", "Non-verbal cues only", "Technical data without emotional context"], hint: "Persuasion targets both the logical mind and the emotional heart." },
+            { q: "When planning a presentation, what is the first step that should be taken?", a: 1, options: ["Identifying audience needs", "Defining the primary purpose", "Designing the visual slides", "Practicing the delivery tone"], hint: "Establish your objective (The 'Why') before knowing your audience (The 'Who')." },
+            { q: "To maintain coherence in a presentation, all content sections must be aligned with:", a: 2, options: ["The audience’s personal hobbies", "The speaker's non-verbal cues", "The main goal", "The physical environment"], hint: "Coherence requires all elements to drive towards a single mission." },
+            { q: "What is considered a hallmark of effective eye contact during a speech?", a: 1, options: ["Staring at a single person to show focus", "Scanning the room to include the entire audience", "Looking only at the top of the audience's heads", "Constantly looking at the slides for reference"], hint: "Inclusive communication involves acknowledging the whole room." },
+            { q: "Which of the following is true regarding eye contact and persuasion?", a: 2, options: ["Constant eye contact without breaking is the most effective method.", "Avoiding eye contact helps the audience focus on the data.", "Scanning the room helps the audience feel included in the message.", "Eye contact is considered a verbal communication technique."], hint: "Inclusive eye contact builds collective trust." },
+            { q: "Confidence in a presentation's delivery is primarily conveyed through:", a: 1, options: ["The complexity of the vocabulary", "Non-verbal cues like posture and tone", "The number of slides provided", "The use of vivid language"], hint: "Your physical presence and tone often speak louder than your words." },
+            { q: "In digital communication, how are issues like a 'fixed screen' or a 'bad microphone' categorized?", a: 2, options: ["Psychological Noise", "Semantic Noise", "Physical Noise", "Feedback Loops"], hint: "Environmental or technical barriers fall under physical interference." },
+            { q: "According to the 'Personal Brand' case study, what is often mistakenly viewed as the 'ultimate professional currency'?", a: 1, options: ["Soft skills", "Technical brilliance", "Emotional intelligence", "Networking"], hint: "Brilliance alone is often insufficient without communication skills." },
+            { q: "Feedback is widely considered to be a ________ element in the communication process.", a: 2, options: ["Optional", "Negative", "Critical", "Secondary"], hint: "Feedback is the loop that ensures successful decoding." },
+            { q: "Using 'vivid language' is an example of which type of communication?", a: 2, options: ["Non-verbal communication", "Visual communication", "Verbal communication", "Physical communication"], hint: "The structural use of words is always a verbal act." },
+            { q: "Communication between two peer developers at the same organizational level is known as:", a: 2, options: ["Vertical Communication", "Upward Communication", "Horizontal Communication", "Downward Communication"], hint: "Lateral movement between equals is horizontal." },
+            { q: "What is the primary purpose of Upward Vertical Communication?", a: 1, options: ["To issue commands to subordinates", "To provide feedback to leaders about progress or challenges", "To chat with peers about social events", "To eliminate the need for horizontal flows"], hint: "Moving insights from the bottom to the top." },
+            { q: "To ensure clarity across all departments, effective organizations must rely on:", a: 2, options: ["Only vertical communication flows", "Only horizontal communication flows", "Both vertical and horizontal communication flows", "Informal communication only"], hint: "A healthy organization flows in all directions." },
+            { q: "In a technical context, the term 'Scaling' is synonymous with:", a: 1, options: ["Legacy", "Growing", "Debugging", "Archiving"], hint: "To scale is to increase capacity or grow." },
+            { q: "If a developer refers to an 'outdated system,' they are likely describing a:", a: 1, options: ["Scaled system", "Legacy system", "Horizontal system", "Coherent system"], hint: "Legacy systems are those maintained past their modern prime." },
+            { q: "What does the first P in the PREP framework stand for?", a: 1, options: ["Purpose", "Point", "Plan"], hint: "PREP starts with your main Point." },
+            { q: "Which component of PREP involves providing a specific instance or evidence?", a: 1, options: ["Reason", "Example", "Practice"], hint: "E stands for Example/Evidence." },
+            { q: "Which rhetorical appeal focuses on logic, reason, and proof?", a: 2, options: ["Ethos", "Pathos", "Logos"], hint: "Logos is the Greek root for logic." },
+            { q: "Using personal branding and showing confidence in delivery is a technique of:", a: 1, options: ["Logos", "Ethos", "Pathos"], hint: "Ethos is established through character and authority." },
+            { q: "Which type of presentation focuses on step-by-step explanations and demonstrations?", a: 2, options: ["Informative", "Persuasive", "Instructional"], hint: "Instructional methods focus on teaching a process." },
+            { q: "What is the first step in defining a presentation's purpose?", a: 1, options: ["Setting a timer", "Identifying audience needs", "Writing a conclusion"], hint: "The audience's context dictates the purpose." },
+            { q: "A 'bad microphone' or a 'notification popping up' are examples of:", a: 2, options: ["Semantic Noise", "Psychological Noise", "Physical Noise"], hint: "External disruptions to the transmission." },
+            { q: "Instructional presentations are designed to facilitate:", a: 1, options: ["Sales", "Learning and practical application", "Data storage"], hint: "The goal is active skill acquisition." },
+            { q: "To maintain Ethos when a project is delayed, how should you structure your 'Reason'?", a: 1, options: ["Blame the synchronization error on the software vendor.", "Explain that you prioritized data integrity over speed.", "Downplay the delay as a minor administrative hiccup."], hint: "Taking ownership of values builds long-term trust." },
+            { q: "In the 4-day work week argument, which Pathos element is most effective?", a: 0, options: ["Describing the 'surviving' feeling of a Thursday afternoon.", "Listing the exact number of hours saved per month.", "Referencing a legal study on labor laws."], hint: "Pathos connects with shared human feelings." },
+            { q: "Self-running tasks stand for which technical jargon?", a: 0, options: ["Automation features", "Backend architecture", "Latency"], hint: "Tasks running without human input are automated." },
+            { q: "Which element is responsible for 'translating complexity into clarity' before sending a message?", a: 1, options: ["The receiver", "The sender", "The channel"], hint: "Encoding is the sender's primary clarity task." },
+            { q: "A 'frozen screen' represents a failure in which element?", a: 2, options: ["The message", "The sender", "The medium / channel"], hint: "The medium carries the message; its failure stops transmission." },
+            { q: "When a listener provides a confused expression, they are providing:", a: 1, options: ["Semantic Noise", "Feedback", "Encoding"], hint: "Non-verbal feedback signals decoding status." },
+            { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Internal mental barriers are psychological noise." }
         ];
 
         let idx = 0;
         let score = 0;
-        let answers = new Array(quizData.length).fill(null);
+        let userAns = new Array(quizData.length).fill(null);
         let mistakes = 0;
-        let lastActionTime = Date.now();
+        let lastTime = Date.now();
 
         const beboMessages = {
             intro: ["يا هلا يا هلا ", "مرحبا اسمي بيبو جاهز لبدا الاختبار ؟.", "نجم النجوم حمدلله على السلامه يعم ."],
-            correct: ["يسلام عليك وانت ملعلع كده ايوا ستمر عاش.", "ايوا كده عاوزك تفرتك الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين يسطا خف دح  شويه .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتوره مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
-            wrong: ["معلش معلش هتيجى المره الجايه.", "ركز بس هتيجى هتيجى.", "انت متقل فى الفطار شكلك.", "اشرب شاى وروق كده.", "خف اكل كحك هتتخن ومخك هيكبر.","ركز يسطا الامتحان كبير .","وقد ياتيك الوقت الشخص فى الصح الخطاء زي الى بتعملو فيا ده.","قوم اعملنا شاى يسطا الله يكرمك.","تنام طيب يمكن تركز شويه.","هات اخرك ولا يهمك .","انت هتجيب اخرى انا كده.","شوف التلميح يمكن تظبط معاك.","شغلانه متعبه انا عارف.","ركز بس ركز.",],
-            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا ولا متفوق يعم انت بتغرق كده.", "ادائك ده يدرس حقيقى اى الضحك ده يسطا.", "انت بتهزر يبنى اى ده انت كده مش هتحصل تجيب درجه حراره حتى.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","الموكوس وخايب الرجا لما يقعدو مع بعض .","جلنف جلنف يعنى مفيش كلام.","ركز يا مسطول .","عارف الحيا هتحلو امتى لما تتنيل تذاكر ."],
-            fast: ["اقرا السؤال الاول يا جلنف.", "مستعجل على يا اخويا  اقرا السؤال الاول.", "هو حد بيجرى وراك ولا اى.", "خد نفسك واقرا السؤال الاول."],
-            complete: ["اخيرا خلصنا روح يعم يلا شوف ماده غيرى", "تمام كده، يلا على النتيجة", "شوف نتيجتك "],
+            correct: ["يسلام عليك وانت ملعلع كده ايوا استمر عاش.", "ايوا كده عاوزك تقفل الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين  .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتور مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
+            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا ولا متفوق يعم انت بتغرق كده.", "ادائك ده يدرس حقيقى اى الضحك ده يسطا.", "شوف التلميحات.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","الموكوس وخايب الرجا لما يقعدو مع بعض .","جلنف جلنف يعنى مفيش كلام.","ركز  .","عارف الحيا هتحلو امتى لما تتنيل تذاكر ."],
             resultsAdvice: [
                 "نتيجتك دى يسطا ولا درجه حراره.",
                 "منت لو تبص على التلميحات وانت بتحل مكنتش جبت درجات الحراره دى.",
                 "تعي اشب شاى يسطا بالى انت عامله ده.",
                 "متزعلش مش مهم درجتك فى الامتحان المهم الصحه والستر.",
-                "هيجى شخص يحسسك انك ف كفه والكون كله فى كفه وبعدين يسقفلك بالكفتين على وشك علىشان النتيجه العره الى انت جايبها دى."
+                "هيجى شخص يحسسك انك ف كفه والكون كله فى كفه وبعدين يسقفلك بالكفتين على وشك علىشان النتيجه الى انت جايبها دى."
             ],
             resultsSuccess: [
-                "مش قولتلك دحيح جامد يعم اتكل على الله يلا من هنا.",
-                "المعيد القادم .",
-                "اوعي تتغر بالنتيجه دى يا صحبي ."
+                "مشاء الله عليك ",
+                "هايل بجد عاش عليك.",
+                "شيئ جميل جدا متنساش تراجع الاساله النظرى  ."
             ]
         };
 
@@ -340,130 +308,125 @@
             const msgs = beboMessages[category];
             
             robot.className = `bebo-robot ${state}`;
-            bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-            bubble.classList.add('active');
             
-            setTimeout(() => { if(idx < quizData.length) robot.className = "bebo-robot"; }, 3500);
+            if (msgs && msgs.length > 0) {
+                bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
+                bubble.classList.add('active');
+            } else {
+                bubble.classList.remove('active');
+            }
+
+            // Hide bubble after certain time
+            setTimeout(() => { 
+                bubble.classList.remove('active');
+                if(idx < quizData.length) robot.classList.remove('success', 'error');
+            }, 4500);
         }
 
-        function init() {
-            render();
-            setBebo('ready', 'intro');
+        function triggerBeboFlash() {
+            const robot = document.getElementById('bebo-robot');
+            robot.classList.add('flash-active');
+            setTimeout(() => robot.classList.remove('flash-active'), 500);
         }
 
         function toggleHint() {
-            document.getElementById('hint-box').classList.toggle('hidden');
+            document.getElementById('hint-text').classList.toggle('hidden');
+            document.querySelector('.bulb-icon').classList.toggle('bulb-active');
         }
 
         function render() {
-            const data = quizData[idx];
-            document.getElementById('q-idx').innerText = idx + 1;
-            document.getElementById('question-body').innerText = data.q;
-            document.getElementById('hint-text').innerText = data.hint;
-            document.getElementById('hint-box').classList.add('hidden');
+            const q = quizData[idx];
+            document.getElementById('question-number').innerText = `ASSESSMENT POINT ${idx + 1} OF ${quizData.length}`;
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('hint-text').innerText = q.hint;
+            document.getElementById('hint-text').classList.add('hidden');
+            document.querySelector('.bulb-icon').classList.remove('bulb-active');
             
             const container = document.getElementById('options-container');
             container.innerHTML = '';
             
-            const answered = answers[idx] !== null;
+            const answered = userAns[idx] !== null;
             document.getElementById('next-btn').disabled = !answered;
-            
-            data.options.forEach((opt, i) => {
+            document.getElementById('prev-btn').style.opacity = (idx === 0) ? "0.3" : "1";
+
+            q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerHTML = `<span class="bg-white/5 w-6 h-6 rounded-lg flex items-center justify-center font-bold text-[9px]">${String.fromCharCode(65 + i)}</span> <span>${opt}</span>`;
+                btn.className = 'option-btn rounded-sm flex items-center gap-3 md:gap-4 w-full';
+                btn.innerHTML = `<span class="bg-white/5 w-6 h-6 md:w-8 md:h-8 rounded-lg flex items-center justify-center font-bold text-[10px] md:text-xs text-slate-400">${String.fromCharCode(65 + i)}</span> <span>${opt}</span>`;
                 
                 if (answered) {
-                    btn.disabled = true;
-                    if (i === data.a) btn.classList.add('correct');
-                    if (answers[idx] === i && i !== data.a) btn.classList.add('wrong');
+                    btn.classList.add('locked');
+                    if (i === q.a) btn.classList.add('correct');
+                    if (userAns[idx] === i && i !== q.a) btn.classList.add('wrong');
                 } else {
-                    btn.onclick = () => select(i, btn);
+                    btn.onclick = () => select(i);
                 }
                 container.appendChild(btn);
             });
-
+            
             document.getElementById('progress-fill').style.width = `${((idx + 1) / quizData.length) * 100}%`;
-            lastActionTime = Date.now();
+            lastTime = Date.now();
         }
 
-        function select(choice, btn) {
-            const elapsed = Date.now() - lastActionTime;
-            answers[idx] = choice;
-            const correct = choice === quizData[idx].a;
-
+        function select(choice) {
+            if (userAns[idx] !== null) return;
+            userAns[idx] = choice;
+            const correct = (choice === quizData[idx].a);
+            
             if (correct) {
                 score++;
                 mistakes = 0;
-                if (elapsed < 1500) setBebo('ready', 'fast');
-                else setBebo('success', 'correct');
+                setBebo('success', 'correct');
             } else {
                 mistakes++;
-                if (mistakes >= 3) setBebo('error', 'aggressive');
-                else setBebo('warning', 'wrong');
+                setBebo('error', 'aggressive'); 
             }
-
             document.getElementById('score-pill').innerText = `SCORE: ${score}`;
             render();
         }
 
-        function handleNext() {
-            if (idx < quizData.length - 1) {
-                idx++;
-                render();
-            } else {
-                finish();
-            }
+        function nextQuestion() { 
+            if (idx < quizData.length - 1) { 
+                idx++; 
+                render(); 
+            } else finish(); 
         }
-
-        function handleBack() {
-            if (idx > 0) {
-                idx--;
-                render();
-            }
+        
+        function prevQuestion() { 
+            if (idx > 0) { 
+                idx--; 
+                render(); 
+            } 
         }
-
-        function handleSkip() {
-            if (idx < quizData.length - 1) {
-                idx++;
-                render();
-            } else {
-                finish();
-            }
-        }
-
+        
         function finish() {
-            document.getElementById('quiz-ui').classList.add('hidden');
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.querySelector('.bebo-wrapper').classList.add('hidden');
             document.getElementById('result-view').classList.remove('hidden');
-            
             const pct = Math.round((score / quizData.length) * 100);
-            document.getElementById('final-pct').innerText = pct + '%';
-            document.getElementById('final-raw-score').innerText = `${score} / ${quizData.length}`;
+            document.getElementById('final-score').innerText = pct + '%';
             
-            const msgEl = document.getElementById('final-bebo-msg');
-            const robot = document.getElementById('bebo-robot');
-            const bubble = document.getElementById('bebo-bubble');
-
-            // Set specific card message
-            let finalCardMsg;
-            if (pct >= 85) {
-                const msgs = beboMessages.resultsSuccess;
-                finalCardMsg = msgs[Math.floor(Math.random() * msgs.length)];
-                robot.className = "bebo-robot success";
-            } else {
-                const msgs = beboMessages.resultsAdvice;
-                finalCardMsg = msgs[Math.floor(Math.random() * msgs.length)];
-                robot.className = "bebo-robot error";
-            }
-            msgEl.innerText = finalCardMsg;
-
-            // Set DIFFERENT bubble message using 'complete' category
-            const completeMsgs = beboMessages.complete;
-            bubble.innerText = completeMsgs[Math.floor(Math.random() * completeMsgs.length)];
-            bubble.classList.add('active');
+            const category = pct >= 80 ? 'resultsSuccess' : 'resultsAdvice';
+            const msgs = beboMessages[category];
+            const finalMsg = msgs[Math.floor(Math.random() * msgs.length)];
+            document.getElementById('result-message').innerText = finalMsg;
         }
 
-        window.onload = init;
+        function restartQuiz() {
+            idx = 0; score = 0; mistakes = 0;
+            userAns = new Array(quizData.length).fill(null);
+            document.querySelector('.bebo-wrapper').classList.remove('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('result-view').classList.add('hidden');
+            document.getElementById('score-pill').innerText = "SCORE: 0";
+            render();
+            setBebo('ready', 'intro');
+        }
+
+        window.onload = () => {
+            render();
+            setTimeout(() => setBebo('ready', 'intro'), 500);
+        };
     </script>
 </body>
 </html>
