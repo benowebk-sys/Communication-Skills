@@ -106,7 +106,6 @@
         .eyes-container { display: flex; gap: 8px; }
         .eye { width: 7px; height: 7px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 8px var(--bebo-purple); transition: all 0.3s ease; }
         
-        /* Bebo Visual States */
         .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
         .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
         .bebo-robot.error .eye:last-child { transform: rotate(15deg); }
@@ -277,12 +276,26 @@
             { q: "A 'frozen screen' represents a failure in which element?", a: 2, options: ["The message", "The sender", "The medium / channel"], hint: "The medium carries the message; its failure stops transmission." },
             { q: "When a listener provides a confused expression, they are providing:", a: 1, options: ["Semantic Noise", "Feedback", "Encoding"], hint: "Non-verbal feedback signals decoding status." },
             { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Internal mental barriers are psychological noise." },
-            // NEW QUESTIONS ADDED
-            { q: "True or False: Ancient Greek philosophy, which shaped Western thinking, primarily emphasized social harmony and filial piety.", a: 1, options: ["True", "False"], hint: "Social harmony and filial piety are core tenets of Eastern philosophy (Confucianism)." },
-            { q: "True or False: Eastern cultures generally adopt a collectivist approach to family, where multiple generations may live together.", a: 0, options: ["True", "False"], hint: "Multi-generational living and collective priority are characteristic of Eastern structures." },
-            { q: "True or False: Western education systems tend to prioritize rote memorization and standardized test scores over critical thinking.", a: 1, options: ["True", "False"], hint: "Western systems generally place a higher emphasis on critical thinking and individualism." },
-            { q: "True or False: The Japanese concept of 'Wa' in the workplace emphasizes individual achievement and climbing the corporate ladder.", a: 1, options: ["True", "False"], hint: "'Wa' emphasizes social harmony and team cooperation over individual competition." },
-            { q: "True or False: Western medicine is described as taking a more holistic approach by focusing on the mind-body-spirit connection.", a: 1, options: ["True", "False"], hint: "Western medicine traditionally focuses on biochemical symptoms; holistic approaches are more common in Eastern medicine." }
+            { q: "True or False: Ancient Greek philosophy primarily emphasized social harmony and filial piety.", a: 1, options: ["True", "False"], hint: "Social harmony is an Eastern (Confucian) emphasis." },
+            { q: "True or False: Eastern cultures generally adopt a collectivist approach to family.", a: 0, options: ["True", "False"], hint: "Collectivism is a hallmark of Eastern family structures." },
+            { q: "True or False: Western education systems tend to prioritize rote memorization over critical thinking.", a: 1, options: ["True", "False"], hint: "Western systems usually favor individualism and critical analysis." },
+            { q: "True or False: The Japanese concept of 'Wa' emphasizes individual achievement.", a: 1, options: ["True", "False"], hint: "'Wa' focuses on team harmony and group consensus." },
+            { q: "True or False: Western medicine is described as taking a more holistic approach.", a: 1, options: ["True", "False"], hint: "Western medicine is usually more biochemical/symptomatic than holistic." },
+            // REVISION PDF QUESTIONS 1-14
+            { q: "Why does the 'Standard' opening typically fail with a student audience?", a: 0, options: ["They feel judged or bored hearing similar advice.", "The presenter lacks 1990s statistical data.", "The Food Pyramid is too complex."], hint: "Audiences dislike repetitive or preaching tones." },
+            { q: "What is the 'WIIFM' factor used to motivate students in the successful pitch?", a: 1, options: ["Improving BMI and long-term health.", "Saving $200 a month and maintaining energy.", "Learning the history of nutrition since 1990."], hint: "WIIFM stands for 'What's In It For Me'." },
+            { q: "How does the 'Mastered' presenter establish trust with the audience?", a: 2, options: ["By acting as a preacher to show authority.", "By showing charts of rising obesity rates.", "By acknowledging convenience and acting as a peer."], hint: "Peer-to-peer relatability builds immediate trust." },
+            { q: "Which of the following is a key element of the 'Roadmap' in the successful presentation?", a: 2, options: ["60-minute deep dive into chemistry.", "Lecture on dietary perfection.", "Sharing three 10-minute meals that cost less than a Big Mac."], hint: "Roadmaps provide concrete, useful take-aways." },
+            { q: "What is the recommended physical stance to convey confidence and help the audience feel safe?", a: 1, options: ["Pacing slowly back and forth.", "Standing still with hands at your sides.", "Gesturing frequently with your hands."], hint: "Stillness prevents distractions and shows control." },
+            { q: "When giving your 'credential statement,' what does the speaker suggest you focus on?", a: 0, options: ["A solution-oriented statement showing how you help.", "A list of academic degrees.", "A humorous anecdote about your career."], hint: "Focus on the value you provide, not just your title." },
+            { q: "How does focus change when moving from a Seminar to a Budget Pitch?", a: 0, options: ["Shift from methodology/data to ROI.", "Increasing complex charts and p-values.", "Changing tone from professional to passionate."], hint: "Business audiences care primarily about results/money." },
+            { q: "Which success metric is associated with the 'Student Union Rally' (To Inspire)?", a: 2, options: ["The audience understands mathematical data.", "The committee signs a check.", "Students sign up to help as volunteers."], hint: "Inspiration is measured by active commitment." },
+            { q: "What type of slide content is most appropriate for a 'Persuasive Pitch' to a Finance Committee?", a: 2, options: ["Detailed tables and academic citations.", "High-quality photos of landfills.", "Cost-benefit graphs."], hint: "Visualize the economic argument." },
+            { q: "According to the 'Primacy Effect,' why are the first 60 seconds critical?", a: 1, options: ["It's the only time for questions.", "People remember the beginning better than the middle.", "It's for reading your full professional bio."], hint: "The brain anchors heavily on first impressions." },
+            { q: "Which 'Hook' method involves starting mid-action to build immediate empathy?", a: 2, options: ["Provocative Question", "Startling Statistic", "Storytelling Approach"], hint: "Stories starting 'in media res' hook the brain." },
+            { q: "When establishing a 'Roadmap,' what does the 'How' component typically refer to?", a: 2, options: ["The emotional story.", "Specific data and p-values.", "Logistics like talk length and when to ask questions."], hint: "Logistics manage audience expectations." },
+            { q: "What is the primary purpose of the 'WIIFM' factor in an opening?", a: 1, options: ["To apologize for technical issues.", "To explicitly state the benefit for the audience.", "To provide a detailed list of citations."], hint: "Connect the content to the listener's needs." },
+            { q: "Which of the following is considered a common 'opening pitfall' to avoid?", a: 2, options: ["Making eye contact.", "Using the word 'We'.", "Beginning with an apology for being nervous."], hint: "Apologies undermine your authority immediately." }
         ];
 
         let idx = 0;
@@ -292,20 +305,20 @@
         let lastTime = Date.now();
 
         const beboMessages = {
-            intro: ["يا هلا يا هلا ", "مرحبا اسمي بيبو جاهز لبدا الاختبار ؟.", "نجم النجوم حمدلله على السلامه يعم ."],
-            correct: ["يسلام عليك وانت ملعلع كده ايوا استمر عاش.", "ايوا كده عاوزك تقفل الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين  .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتور مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
-            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا ولا متفوق يعم انت بتغرق كده.", "ادائك ده يدرس حقيقى اى الضحك ده يسطا.", "شوف التلميحات.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","الموكوس وخايب الرجا لما يقعدو مع بعض .","جلنف جلنف يعنى مفيش كلام.","ركز  .","عارف الحيا هتحلو امتى لما تتنيل تذاكر ."],
+            intro: [ , "مرحبا اسمي بيبو جاهز لبدا الاختبار ؟.", "نجم النجوم حمدلله على السلامه يعم ."],
+            correct: ["يسلام عليك ايوا كده استمر عاش.", "ايوا كده عاوزك تقفل الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين  .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتوره مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
+            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا.", "ادائك مش عاجبنى اقرا السؤال كويس.", "شوف التلميحات.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","كده مينفعش انصحك تراجع المحاضرات تانى.","ركز عندك احسن من كده.","ركز  .","اهدى بس كده وركز ."],
             resultsAdvice: [
                 "نتيجتك دى يسطا ولا درجه حراره.",
                 "منت لو تبص على التلميحات وانت بتحل مكنتش جبت درجات الحراره دى.",
                 "تعي اشب شاى يسطا بالى انت عامله ده.",
                 "متزعلش مش مهم درجتك فى الامتحان المهم الصحه والستر.",
-                "هيجى شخص يحسسك انك ف كفه والكون كله فى كفه وبعدين يسقفلك بالكفتين على وشك علىشان النتيجه الى انت جايبها دى."
+                "هيجى شخص يحسسك انك ف كفه والكون كله فى كفه وبعدين يسقفلك بالكفتين على وشك علشان النتيجه الى انت جايبها دى."
             ],
             resultsSuccess: [
                 "مشاء الله عليك ",
                 "هايل بجد عاش عليك.",
-                "شيئ جميل جدا متنساش تراجع الاساله النظرى  ."
+                "شيئ جميل جدا عندك احسن منكده كمان  عاش عليك  ."
             ]
         };
 
@@ -353,6 +366,7 @@
             
             const answered = userAns[idx] !== null;
             document.getElementById('next-btn').disabled = !answered;
+            document.getElementById('prev-btn').style.opacity = (idx === 0) ? "0.3" : "1";
 
             q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
