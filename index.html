@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Skills | Bebo Assessment</title>
+    <title>Communication Skills | Bebo Pro Assessment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -45,7 +45,7 @@
             letter-spacing: 1px;
         }
 
-        /* Bebo Section */
+        /* Bebo Interaction Wrapper */
         .bebo-wrapper {
             display: flex;
             flex-direction: column;
@@ -106,6 +106,7 @@
         .eyes-container { display: flex; gap: 8px; }
         .eye { width: 7px; height: 7px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 8px var(--bebo-purple); transition: all 0.3s ease; }
         
+        /* Bebo Visual States */
         .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
         .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
         .bebo-robot.error .eye:last-child { transform: rotate(15deg); }
@@ -181,7 +182,7 @@
 
     <main class="flex-grow container mx-auto px-4 max-w-xl py-6">
         
-        <!-- Bebo Section -->
+        <!-- Bebo Wrapper -->
         <div class="bebo-wrapper">
             <div id="bebo-bubble" class="bebo-bubble">يا هلا يا هلا</div>
             <div id="bebo-robot" class="bebo-robot">
@@ -275,7 +276,13 @@
             { q: "Which element is responsible for 'translating complexity into clarity' before sending a message?", a: 1, options: ["The receiver", "The sender", "The channel"], hint: "Encoding is the sender's primary clarity task." },
             { q: "A 'frozen screen' represents a failure in which element?", a: 2, options: ["The message", "The sender", "The medium / channel"], hint: "The medium carries the message; its failure stops transmission." },
             { q: "When a listener provides a confused expression, they are providing:", a: 1, options: ["Semantic Noise", "Feedback", "Encoding"], hint: "Non-verbal feedback signals decoding status." },
-            { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Internal mental barriers are psychological noise." }
+            { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Internal mental barriers are psychological noise." },
+            // NEW QUESTIONS ADDED
+            { q: "True or False: Ancient Greek philosophy, which shaped Western thinking, primarily emphasized social harmony and filial piety.", a: 1, options: ["True", "False"], hint: "Social harmony and filial piety are core tenets of Eastern philosophy (Confucianism)." },
+            { q: "True or False: Eastern cultures generally adopt a collectivist approach to family, where multiple generations may live together.", a: 0, options: ["True", "False"], hint: "Multi-generational living and collective priority are characteristic of Eastern structures." },
+            { q: "True or False: Western education systems tend to prioritize rote memorization and standardized test scores over critical thinking.", a: 1, options: ["True", "False"], hint: "Western systems generally place a higher emphasis on critical thinking and individualism." },
+            { q: "True or False: The Japanese concept of 'Wa' in the workplace emphasizes individual achievement and climbing the corporate ladder.", a: 1, options: ["True", "False"], hint: "'Wa' emphasizes social harmony and team cooperation over individual competition." },
+            { q: "True or False: Western medicine is described as taking a more holistic approach by focusing on the mind-body-spirit connection.", a: 1, options: ["True", "False"], hint: "Western medicine traditionally focuses on biochemical symptoms; holistic approaches are more common in Eastern medicine." }
         ];
 
         let idx = 0;
@@ -316,7 +323,6 @@
                 bubble.classList.remove('active');
             }
 
-            // Hide bubble after certain time
             setTimeout(() => { 
                 bubble.classList.remove('active');
                 if(idx < quizData.length) robot.classList.remove('success', 'error');
@@ -347,7 +353,6 @@
             
             const answered = userAns[idx] !== null;
             document.getElementById('next-btn').disabled = !answered;
-            document.getElementById('prev-btn').style.opacity = (idx === 0) ? "0.3" : "1";
 
             q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
