@@ -1,0 +1,70 @@
+:root {
+    --bg-deep: #0b0e14;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.bebo-robot {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 12px;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+.bebo-bubble {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    background: #1a1f29;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    max-width: 250px;
+    border: 1px border-white/10;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.bebo-bubble.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.option-btn:hover:not(.locked) {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+}
+
+.option-btn.correct {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+}
+
+.option-btn.wrong {
+    background: rgba(255, 62, 62, 0.1) !important;
+    border-color: #ff3e3e !important;
+}
+
+.bulb-active {
+    color: #facc15;
+}

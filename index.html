@@ -3,449 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Skills | Bebo Pro Assessment</title>
+    <title>Communication Skills Assessment</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Tajawal:wght@400;700&display=swap');
-
-        :root {
-            --bg-deep: #0b0e14;
-            --card-shiny: #1a1f29;
-            --accent-red: #ff3e3e;
-            --bebo-purple: #8b5cf6;
-            --bebo-green: #00f2ad;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: #e2e8f0;
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            margin: 0;
-        }
-
-        /* Pro Header */
-        .header-glow {
-            background: #000;
-            border-bottom: 2px solid var(--accent-red);
-            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-text {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-red);
-            text-shadow: 0 0 8px var(--accent-red);
-            letter-spacing: 1px;
-        }
-
-        /* Bebo Interaction Wrapper */
-        .bebo-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .bebo-wrapper { align-items: flex-end; }
-        }
-
-        .bebo-bubble {
-            background: #161b25;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            color: #fff;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            max-width: 85%;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            font-family: 'Tajawal', sans-serif;
-            text-align: right;
-            direction: rtl;
-            pointer-events: none;
-        }
-
-        .bebo-bubble.active { opacity: 1; transform: translateY(0); }
-
-        .bebo-robot {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(145deg, #1e2532, #11161f);
-            border-radius: 15px;
-            border: 1.5px solid rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .bebo-robot.flash-active {
-            animation: robotFlash 0.5s ease;
-        }
-
-        @keyframes robotFlash {
-            0% { filter: brightness(1); }
-            50% { filter: brightness(1.5); box-shadow: 0 0 20px var(--accent-red); }
-            100% { filter: brightness(1); }
-        }
-
-        .eyes-container { display: flex; gap: 8px; }
-        .eye { width: 7px; height: 7px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 8px var(--bebo-purple); transition: all 0.3s ease; }
-        
-        .bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
-        .bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
-        .bebo-robot.error .eye:last-child { transform: rotate(15deg); }
-        .bebo-robot.ready .eye { background: var(--bebo-green); width: 7px; height: 7px; box-shadow: 0 0 8px var(--bebo-green); }
-
-        /* Assessment Card */
-        .quiz-card {
-            background: var(--card-shiny);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.25rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .option-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            text-align: left;
-            font-size: 0.85rem;
-            width: 100%;
-        }
-
-        .option-btn:hover:not(.locked) {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(3px);
-        }
-
-        .option-btn.correct { background: #059669 !important; border-color: #10b981 !important; color: white; }
-        .option-btn.wrong { background: #dc2626 !important; border-color: #ef4444 !important; color: white; }
-        .option-btn.locked { cursor: default; }
-
-        .bulb-icon { transition: all 0.3s; color: #4b5563; }
-        .bulb-active { color: #facc15; filter: drop-shadow(0 0 5px #facc15); }
-
-        .progress-line {
-            height: 3px;
-            background: #1e2530;
-            border-radius: 2px;
-            margin-bottom: 0.75rem;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent-red);
-            transition: width 0.4s ease;
-        }
-
-        .bilal-signature {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(45deg, #ff3e3e, #ff8e8e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bebo-wrapper">
+        <div id="bebo-robot" class="bebo-robot"></div>
+        <div id="bebo-bubble" class="bebo-bubble"></div>
+    </div>
 
-    <header class="header-glow py-3 px-5">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="header-text text-base md:text-lg font-bold uppercase tracking-tight">Communication Skills</h1>
-            <div id="score-pill" class="bg-red-900/30 border border-red-500/40 px-3 py-1 rounded-full text-red-500 text-[10px] font-bold tracking-widest">
-                SCORE: 0
+    <main class="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
+        <div id="quiz-container" class="max-w-4xl w-full">
+            <div class="flex justify-between items-center mb-6">
+                <div id="question-number" class="text-xs tracking-widest text-slate-500 font-bold uppercase"></div>
+                <div id="score-pill" class="bg-white/5 px-4 py-1 rounded-full text-[10px] font-bold tracking-tighter border border-white/10">SCORE: 0</div>
             </div>
-        </div>
-    </header>
 
-    <main class="flex-grow container mx-auto px-4 max-w-xl py-6">
-        
-        <!-- Bebo Wrapper -->
-        <div class="bebo-wrapper">
-            <div id="bebo-bubble" class="bebo-bubble">يا هلا يا هلا</div>
-            <div id="bebo-robot" class="bebo-robot">
-                <div class="eyes-container">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
+            <div class="relative mb-8">
+                <div id="question-text" class="text-xl md:text-2xl font-medium leading-relaxed mb-6"></div>
+                <button onclick="toggleHint()" class="absolute -right-2 -top-2 bulb-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6m-3-3V9m0 12a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"/></svg>
+                </button>
+                <div id="hint-text" class="hidden bg-white/5 p-4 rounded-sm text-sm text-slate-400 border-l-2 border-white/20 mb-4"></div>
+            </div>
+
+            <div id="options-container" class="grid gap-3 mb-10"></div>
+
+            <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                <button id="prev-btn" onclick="prevQuestion()" class="text-xs font-bold tracking-widest text-slate-400 hover:text-white transition-colors uppercase">Previous</button>
+                <div class="flex-grow mx-8 h-[2px] bg-white/5 relative">
+                    <div id="progress-fill" class="absolute h-full bg-white transition-all duration-500" style="width: 0%"></div>
                 </div>
+                <button id="next-btn" onclick="nextQuestion()" disabled class="text-xs font-bold tracking-widest text-white hover:opacity-70 disabled:opacity-20 transition-all uppercase">Next Point</button>
             </div>
         </div>
 
-        <div id="quiz-container">
-            <div class="progress-line">
-                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
-            </div>
-
-            <div class="flex justify-between items-center mb-3">
-                <button onclick="toggleHint()" class="text-blue-400 text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5">
-                    <i class="fas fa-lightbulb bulb-icon"></i> Reveal Hint
-                </button>
-                <div id="question-number" class="text-[9px] text-slate-500 uppercase font-bold"></div>
-            </div>
-            
-            <div id="hint-text" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-2.5 rounded-r-lg mb-4 text-[11px] text-slate-300 italic">
-            </div>
-
-            <div class="quiz-card">
-                <h2 id="question-text" class="text-sm md:text-base font-semibold leading-snug mb-5 text-white"></h2>
-                <div id="options-container" class="grid gap-2.5"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 mt-5">
-                <button onclick="prevQuestion()" id="prev-btn" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5">
-                    <i class="fas fa-chevron-left mr-1"></i> Prev
-                </button>
-                <button onclick="nextQuestion()" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5 order-2 md:order-2">
-                    Skip <i class="fas fa-forward ml-1"></i>
-                </button>
-                <button onclick="nextQuestion()" id="next-btn" class="bg-red-600 hover:bg-red-500 py-2 rounded-lg text-xs font-bold uppercase shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3 md:order-3">
-                    Next <i class="fas fa-chevron-right ml-1"></i>
-                </button>
-            </div>
+        <div id="result-view" class="hidden text-center max-w-md">
+            <h1 class="text-6xl font-bold mb-4 tracking-tighter" id="final-score">0%</h1>
+            <p id="result-message" class="text-slate-400 mb-8 leading-relaxed"></p>
+            <button onclick="restartQuiz()" class="border border-white/20 px-8 py-3 text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase">Try Again</button>
         </div>
-
-        <!-- Result View -->
-        <div id="result-view" class="hidden text-center py-6">
-            <div class="text-4xl font-bold font-mono mb-1 text-white" id="final-score">0%</div>
-            <p class="text-slate-400 uppercase tracking-widest text-[9px] mb-6">Efficiency Accuracy</p>
-            
-            <div class="quiz-card mb-6">
-                <p id="result-message" class="text-sm font-medium text-emerald-400 italic" style="font-family: 'Tajawal'; direction: rtl;"></p>
-            </div>
-            
-            <button onclick="restartQuiz()" class="bg-white text-black px-8 py-2.5 rounded-full font-bold hover:scale-105 transition tracking-widest text-[10px]">RESTART TEST</button>
-        </div>
-
     </main>
 
-    <footer class="py-6 text-center mt-auto border-t border-white/5">
-        <p class="text-slate-600 text-[7px] uppercase tracking-[0.4em] mb-1.5">Developer</p>
-        <div class="bilal-signature">BILAL MOHAMED</div>
-    </footer>
-
-    <script>
-        const quizData = [
-            { q: "Which components are essential for a persuasive presentation?", a: 1, options: ["Only logical arguments", "Emotional appeals and logical arguments", "Non-verbal cues only", "Technical data without emotional context"], hint: "Persuasion targets both the logical mind and the emotional heart." },
-            { q: "When planning a presentation, what is the first step that should be taken?", a: 1, options: ["Identifying audience needs", "Defining the primary purpose", "Designing the visual slides", "Practicing the delivery tone"], hint: "Establish your objective (The 'Why') before knowing your audience (The 'Who')." },
-            { q: "To maintain coherence in a presentation, all content sections must be aligned with:", a: 2, options: ["The audience’s personal hobbies", "The speaker's non-verbal cues", "The main goal", "The physical environment"], hint: "Coherence requires all elements to drive towards a single mission." },
-            { q: "What is considered a hallmark of effective eye contact during a speech?", a: 1, options: ["Staring at a single person to show focus", "Scanning the room to include the entire audience", "Looking only at the top of the audience's heads", "Constantly looking at the slides for reference"], hint: "Inclusive communication involves acknowledging the whole room." },
-            { q: "Which of the following is true regarding eye contact and persuasion?", a: 2, options: ["Constant eye contact without breaking is the most effective method.", "Avoiding eye contact helps the audience focus on the data.", "Scanning the room helps the audience feel included in the message.", "Eye contact is considered a verbal communication technique."], hint: "Inclusive eye contact builds collective trust." },
-            { q: "Confidence in a presentation's delivery is primarily conveyed through:", a: 1, options: ["The complexity of the vocabulary", "Non-verbal cues like posture and tone", "The number of slides provided", "The use of vivid language"], hint: "Your physical presence and tone often speak louder than your words." },
-            { q: "In digital communication, how are issues like a 'fixed screen' or a 'bad microphone' categorized?", a: 2, options: ["Psychological Noise", "Semantic Noise", "Physical Noise", "Feedback Loops"], hint: "Environmental or technical barriers fall under physical interference." },
-            { q: "According to the 'Personal Brand' case study, what is often mistakenly viewed as the 'ultimate professional currency'?", a: 1, options: ["Soft skills", "Technical brilliance", "Emotional intelligence", "Networking"], hint: "Brilliance alone is often insufficient without communication skills." },
-            { q: "Feedback is widely considered to be a ________ element in the communication process.", a: 2, options: ["Optional", "Negative", "Critical", "Secondary"], hint: "Feedback is the loop that ensures successful decoding." },
-            { q: "Using 'vivid language' is an example of which type of communication?", a: 2, options: ["Non-verbal communication", "Visual communication", "Verbal communication", "Physical communication"], hint: "The structural use of words is always a verbal act." },
-            { q: "Communication between two peer developers at the same organizational level is known as:", a: 2, options: ["Vertical Communication", "Upward Communication", "Horizontal Communication", "Downward Communication"], hint: "Lateral movement between equals is horizontal." },
-            { q: "What is the primary purpose of Upward Vertical Communication?", a: 1, options: ["To issue commands to subordinates", "To provide feedback to leaders about progress or challenges", "To chat with peers about social events", "To eliminate the need for horizontal flows"], hint: "Moving insights from the bottom to the top." },
-            { q: "To ensure clarity across all departments, effective organizations must rely on:", a: 2, options: ["Only vertical communication flows", "Only horizontal communication flows", "Both vertical and horizontal communication flows", "Informal communication only"], hint: "A healthy organization flows in all directions." },
-            { q: "In a technical context, the term 'Scaling' is synonymous with:", a: 1, options: ["Legacy", "Growing", "Debugging", "Archiving"], hint: "To scale is to increase capacity or grow." },
-            { q: "If a developer refers to an 'outdated system,' they are likely describing a:", a: 1, options: ["Scaled system", "Legacy system", "Horizontal system", "Coherent system"], hint: "Legacy systems are those maintained past their modern prime." },
-            { q: "What does the first P in the PREP framework stand for?", a: 1, options: ["Purpose", "Point", "Plan"], hint: "PREP starts with your main Point." },
-            { q: "Which component of PREP involves providing a specific instance or evidence?", a: 1, options: ["Reason", "Example", "Practice"], hint: "E stands for Example/Evidence." },
-            { q: "Which rhetorical appeal focuses on logic, reason, and proof?", a: 2, options: ["Ethos", "Pathos", "Logos"], hint: "Logos is the Greek root for logic." },
-            { q: "Using personal branding and showing confidence in delivery is a technique of:", a: 1, options: ["Logos", "Ethos", "Pathos"], hint: "Ethos is established through character and authority." },
-            { q: "Which type of presentation focuses on step-by-step explanations and demonstrations?", a: 2, options: ["Informative", "Persuasive", "Instructional"], hint: "Instructional methods focus on teaching a process." },
-            { q: "What is the first step in defining a presentation's purpose?", a: 1, options: ["Setting a timer", "Identifying audience needs", "Writing a conclusion"], hint: "The audience's context dictates the purpose." },
-            { q: "A 'bad microphone' or a 'notification popping up' are examples of:", a: 2, options: ["Semantic Noise", "Psychological Noise", "Physical Noise"], hint: "External disruptions to the transmission." },
-            { q: "Instructional presentations are designed to facilitate:", a: 1, options: ["Sales", "Learning and practical application", "Data storage"], hint: "The goal is active skill acquisition." },
-            { q: "To maintain Ethos when a project is delayed, how should you structure your 'Reason'?", a: 1, options: ["Blame the synchronization error on the software vendor.", "Explain that you prioritized data integrity over speed.", "Downplay the delay as a minor administrative hiccup."], hint: "Taking ownership of values builds long-term trust." },
-            { q: "In the 4-day work week argument, which Pathos element is most effective?", a: 0, options: ["Describing the 'surviving' feeling of a Thursday afternoon.", "Listing the exact number of hours saved per month.", "Referencing a legal study on labor laws."], hint: "Pathos connects with shared human feelings." },
-            { q: "Self-running tasks stand for which technical jargon?", a: 0, options: ["Automation features", "Backend architecture", "Latency"], hint: "Tasks running without human input are automated." },
-            { q: "Which element is responsible for 'translating complexity into clarity' before sending a message?", a: 1, options: ["The receiver", "The sender", "The channel"], hint: "Encoding is the sender's primary clarity task." },
-            { q: "A 'frozen screen' represents a failure in which element?", a: 2, options: ["The message", "The sender", "The medium / channel"], hint: "The medium carries the message; its failure stops transmission." },
-            { q: "When a listener provides a confused expression, they are providing:", a: 1, options: ["Semantic Noise", "Feedback", "Encoding"], hint: "Non-verbal feedback signals decoding status." },
-            { q: "If a Receiver is too stressed to hear the point, they are experiencing:", a: 2, options: ["Physical Noise", "Semantic Noise", "Psychological Noise"], hint: "Internal mental barriers are psychological noise." },
-            { q: "True or False: Ancient Greek philosophy primarily emphasized social harmony and filial piety.", a: 1, options: ["True", "False"], hint: "Social harmony is an Eastern (Confucian) emphasis." },
-            { q: "True or False: Eastern cultures generally adopt a collectivist approach to family.", a: 0, options: ["True", "False"], hint: "Collectivism is a hallmark of Eastern family structures." },
-            { q: "True or False: Western education systems tend to prioritize rote memorization over critical thinking.", a: 1, options: ["True", "False"], hint: "Western systems usually favor individualism and critical analysis." },
-            { q: "True or False: The Japanese concept of 'Wa' emphasizes individual achievement.", a: 1, options: ["True", "False"], hint: "'Wa' focuses on team harmony and group consensus." },
-            { q: "True or False: Western medicine is described as taking a more holistic approach.", a: 1, options: ["True", "False"], hint: "Western medicine is usually more biochemical/symptomatic than holistic." },
-            // REVISION PDF QUESTIONS 1-14
-            { q: "Why does the 'Standard' opening typically fail with a student audience?", a: 0, options: ["They feel judged or bored hearing similar advice.", "The presenter lacks 1990s statistical data.", "The Food Pyramid is too complex."], hint: "Audiences dislike repetitive or preaching tones." },
-            { q: "What is the 'WIIFM' factor used to motivate students in the successful pitch?", a: 1, options: ["Improving BMI and long-term health.", "Saving $200 a month and maintaining energy.", "Learning the history of nutrition since 1990."], hint: "WIIFM stands for 'What's In It For Me'." },
-            { q: "How does the 'Mastered' presenter establish trust with the audience?", a: 2, options: ["By acting as a preacher to show authority.", "By showing charts of rising obesity rates.", "By acknowledging convenience and acting as a peer."], hint: "Peer-to-peer relatability builds immediate trust." },
-            { q: "Which of the following is a key element of the 'Roadmap' in the successful presentation?", a: 2, options: ["60-minute deep dive into chemistry.", "Lecture on dietary perfection.", "Sharing three 10-minute meals that cost less than a Big Mac."], hint: "Roadmaps provide concrete, useful take-aways." },
-            { q: "What is the recommended physical stance to convey confidence and help the audience feel safe?", a: 1, options: ["Pacing slowly back and forth.", "Standing still with hands at your sides.", "Gesturing frequently with your hands."], hint: "Stillness prevents distractions and shows control." },
-            { q: "When giving your 'credential statement,' what does the speaker suggest you focus on?", a: 0, options: ["A solution-oriented statement showing how you help.", "A list of academic degrees.", "A humorous anecdote about your career."], hint: "Focus on the value you provide, not just your title." },
-            { q: "How does focus change when moving from a Seminar to a Budget Pitch?", a: 0, options: ["Shift from methodology/data to ROI.", "Increasing complex charts and p-values.", "Changing tone from professional to passionate."], hint: "Business audiences care primarily about results/money." },
-            { q: "Which success metric is associated with the 'Student Union Rally' (To Inspire)?", a: 2, options: ["The audience understands mathematical data.", "The committee signs a check.", "Students sign up to help as volunteers."], hint: "Inspiration is measured by active commitment." },
-            { q: "What type of slide content is most appropriate for a 'Persuasive Pitch' to a Finance Committee?", a: 2, options: ["Detailed tables and academic citations.", "High-quality photos of landfills.", "Cost-benefit graphs."], hint: "Visualize the economic argument." },
-            { q: "According to the 'Primacy Effect,' why are the first 60 seconds critical?", a: 1, options: ["It's the only time for questions.", "People remember the beginning better than the middle.", "It's for reading your full professional bio."], hint: "The brain anchors heavily on first impressions." },
-            { q: "Which 'Hook' method involves starting mid-action to build immediate empathy?", a: 2, options: ["Provocative Question", "Startling Statistic", "Storytelling Approach"], hint: "Stories starting 'in media res' hook the brain." },
-            { q: "When establishing a 'Roadmap,' what does the 'How' component typically refer to?", a: 2, options: ["The emotional story.", "Specific data and p-values.", "Logistics like talk length and when to ask questions."], hint: "Logistics manage audience expectations." },
-            { q: "What is the primary purpose of the 'WIIFM' factor in an opening?", a: 1, options: ["To apologize for technical issues.", "To explicitly state the benefit for the audience.", "To provide a detailed list of citations."], hint: "Connect the content to the listener's needs." },
-            { q: "Which of the following is considered a common 'opening pitfall' to avoid?", a: 2, options: ["Making eye contact.", "Using the word 'We'.", "Beginning with an apology for being nervous."], hint: "Apologies undermine your authority immediately." }
-        ];
-
-        let idx = 0;
-        let score = 0;
-        let userAns = new Array(quizData.length).fill(null);
-        let mistakes = 0;
-        let lastTime = Date.now();
-
-        const beboMessages = {
-            intro: [ , "مرحبا اسمي بيبو جاهز لبدا الاختبار ؟.", "نجم النجوم حمدلله على السلامه يعم ."],
-            correct: ["يسلام عليك ايوا كده استمر عاش.", "ايوا كده عاوزك تقفل الورقه فى الامتحان.", "هايل يباشا الله عليك عاش.", "يسلام عيك عليك انت كده تلعب على الامتياز يانجم .", "شكلك مذاكر المنهج مرتين  .","لسانى يعجز عن الكلام والله بس حقيقى برافو .","الدكتوره مبسوطه منك هايل والله .","شخصين بحبهم انت والمصمم عاش عليك بجد يسطا ."],
-            aggressive: ["تقريبا الفص الى فى مخك المسؤل عن اتخاذ القرارات فص ثوم.", "تعرف لو جابو ليا كنوز الدنيا علشان ابيعك هبيعك اى الى انت بتعملو ده.", "انت بتنام يسطا.", "ادائك مش عاجبنى اقرا السؤال كويس.", "شوف التلميحات.","حسب خبرتى كده انت تلعب بالعجله درجن درجن الامتياز ده مش سكتك صدقنى.","كده مينفعش انصحك تراجع المحاضرات تانى.","ركز عندك احسن من كده.","ركز  .","اهدى بس كده وركز ."],
-            resultsAdvice: [
-                "نتيجتك دى يسطا ولا درجه حراره.",
-                "منت لو تبص على التلميحات وانت بتحل مكنتش جبت درجات الحراره دى.",
-                "تعي اشب شاى يسطا بالى انت عامله ده.",
-                "متزعلش مش مهم درجتك فى الامتحان المهم الصحه والستر.",
-                "هيجى شخص يحسسك انك ف كفه والكون كله فى كفه وبعدين يسقفلك بالكفتين على وشك علشان النتيجه الى انت جايبها دى."
-            ],
-            resultsSuccess: [
-                "مشاء الله عليك ",
-                "هايل بجد عاش عليك.",
-                "شيئ جميل جدا عندك احسن منكده كمان  عاش عليك  ."
-            ]
-        };
-
-        function setBebo(state, category) {
-            const robot = document.getElementById('bebo-robot');
-            const bubble = document.getElementById('bebo-bubble');
-            const msgs = beboMessages[category];
-            
-            robot.className = `bebo-robot ${state}`;
-            
-            if (msgs && msgs.length > 0) {
-                bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-                bubble.classList.add('active');
-            } else {
-                bubble.classList.remove('active');
-            }
-
-            setTimeout(() => { 
-                bubble.classList.remove('active');
-                if(idx < quizData.length) robot.classList.remove('success', 'error');
-            }, 4500);
-        }
-
-        function triggerBeboFlash() {
-            const robot = document.getElementById('bebo-robot');
-            robot.classList.add('flash-active');
-            setTimeout(() => robot.classList.remove('flash-active'), 500);
-        }
-
-        function toggleHint() {
-            document.getElementById('hint-text').classList.toggle('hidden');
-            document.querySelector('.bulb-icon').classList.toggle('bulb-active');
-        }
-
-        function render() {
-            const q = quizData[idx];
-            document.getElementById('question-number').innerText = `ASSESSMENT POINT ${idx + 1} OF ${quizData.length}`;
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('hint-text').innerText = q.hint;
-            document.getElementById('hint-text').classList.add('hidden');
-            document.querySelector('.bulb-icon').classList.remove('bulb-active');
-            
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-            
-            const answered = userAns[idx] !== null;
-            document.getElementById('next-btn').disabled = !answered;
-            document.getElementById('prev-btn').style.opacity = (idx === 0) ? "0.3" : "1";
-
-            q.options.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn rounded-sm flex items-center gap-3 md:gap-4 w-full';
-                btn.innerHTML = `<span class="bg-white/5 w-6 h-6 md:w-8 md:h-8 rounded-lg flex items-center justify-center font-bold text-[10px] md:text-xs text-slate-400">${String.fromCharCode(65 + i)}</span> <span>${opt}</span>`;
-                
-                if (answered) {
-                    btn.classList.add('locked');
-                    if (i === q.a) btn.classList.add('correct');
-                    if (userAns[idx] === i && i !== q.a) btn.classList.add('wrong');
-                } else {
-                    btn.onclick = () => select(i);
-                }
-                container.appendChild(btn);
-            });
-            
-            document.getElementById('progress-fill').style.width = `${((idx + 1) / quizData.length) * 100}%`;
-            lastTime = Date.now();
-        }
-
-        function select(choice) {
-            if (userAns[idx] !== null) return;
-            userAns[idx] = choice;
-            const correct = (choice === quizData[idx].a);
-            
-            if (correct) {
-                score++;
-                mistakes = 0;
-                setBebo('success', 'correct');
-            } else {
-                mistakes++;
-                setBebo('error', 'aggressive'); 
-            }
-            document.getElementById('score-pill').innerText = `SCORE: ${score}`;
-            render();
-        }
-
-        function nextQuestion() { 
-            if (idx < quizData.length - 1) { 
-                idx++; 
-                render(); 
-            } else finish(); 
-        }
-        
-        function prevQuestion() { 
-            if (idx > 0) { 
-                idx--; 
-                render(); 
-            } 
-        }
-        
-        function finish() {
-            document.getElementById('quiz-container').classList.add('hidden');
-            document.querySelector('.bebo-wrapper').classList.add('hidden');
-            document.getElementById('result-view').classList.remove('hidden');
-            const pct = Math.round((score / quizData.length) * 100);
-            document.getElementById('final-score').innerText = pct + '%';
-            
-            const category = pct >= 80 ? 'resultsSuccess' : 'resultsAdvice';
-            const msgs = beboMessages[category];
-            const finalMsg = msgs[Math.floor(Math.random() * msgs.length)];
-            document.getElementById('result-message').innerText = finalMsg;
-        }
-
-        function restartQuiz() {
-            idx = 0; score = 0; mistakes = 0;
-            userAns = new Array(quizData.length).fill(null);
-            document.querySelector('.bebo-wrapper').classList.remove('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-            document.getElementById('result-view').classList.add('hidden');
-            document.getElementById('score-pill').innerText = "SCORE: 0";
-            render();
-            setBebo('ready', 'intro');
-        }
-
-        window.onload = () => {
-            render();
-            setTimeout(() => setBebo('ready', 'intro'), 500);
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
