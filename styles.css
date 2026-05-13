@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Tajawal:wght@400;700&display=swap');
+
+:root {
+    --bg-deep: #0b0e14;
+    --card-shiny: #1a1f29;
+    --accent-red: #ff3e3e;
+    --bebo-purple: #8b5cf6;
+    --bebo-green: #00f2ad;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Pro Header */
+.header-glow {
+    background: #000;
+    border-bottom: 2px solid var(--accent-red);
+    box-shadow: 0 4px 15px rgba(255, 62, 62, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-text {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-red);
+    text-shadow: 0 0 8px var(--accent-red);
+    letter-spacing: 1px;
+}
+
+/* Bebo Interaction Wrapper */
+.bebo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .bebo-wrapper { align-items: flex-end; }
+}
+
+.bebo-bubble {
+    background: #161b25;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    max-width: 85%;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    font-family: 'Tajawal', sans-serif;
+    text-align: right;
+    direction: rtl;
+    pointer-events: none;
+}
+
+.bebo-bubble.active { opacity: 1; transform: translateY(0); }
+
+.bebo-robot {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(145deg, #1e2532, #11161f);
+    border-radius: 15px;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.bebo-robot.flash-active {
+    animation: robotFlash 0.5s ease;
+}
+
+@keyframes robotFlash {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); box-shadow: 0 0 20px var(--accent-red); }
+    100% { filter: brightness(1); }
+}
+
+.eyes-container { display: flex; gap: 8px; }
+.eye { width: 7px; height: 7px; background: var(--bebo-purple); border-radius: 50%; box-shadow: 0 0 8px var(--bebo-purple); transition: all 0.3s ease; }
+
+.bebo-robot.success .eye { background: var(--bebo-green); box-shadow: 0 0 10px var(--bebo-green); border-radius: 50% 50% 0 0; height: 4px; }
+.bebo-robot.error .eye { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); height: 3px; border-radius: 2px; transform: rotate(-15deg); }
+.bebo-robot.error .eye:last-child { transform: rotate(15deg); }
+.bebo-robot.ready .eye { background: var(--bebo-green); width: 7px; height: 7px; box-shadow: 0 0 8px var(--bebo-green); }
+
+/* Assessment Card */
+.quiz-card {
+    background: var(--card-shiny);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.option-btn:hover:not(.locked) {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(3px);
+}
+
+.option-btn.correct { background: rgba(16, 185, 129, 0.18) !important; border-color: rgba(16, 185, 129, 0.45) !important; color: #d9f99d !important; }
+        .option-btn.wrong { background: rgba(239, 68, 68, 0.18) !important; border-color: rgba(239, 68, 68, 0.45) !important; color: #fecaca !important; }
+.option-btn.locked { cursor: default; }
+
+.bulb-icon { transition: all 0.3s; color: #4b5563; }
+.bulb-active { color: #facc15; filter: drop-shadow(0 0 5px #facc15); }
+
+.progress-line {
+    height: 3px;
+    background: #1e2530;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-red);
+    transition: width 0.4s ease;
+}
+
+.bilal-signature {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(45deg, #ff3e3e, #ff8e8e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+}

@@ -3,48 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Skills Assessment</title>
+    <title>Communication Skills | Bebo Pro Assessment</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bebo-wrapper">
-        <div id="bebo-robot" class="bebo-robot"></div>
-        <div id="bebo-bubble" class="bebo-bubble"></div>
-    </div>
 
-    <main class="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
-        <div id="quiz-container" class="max-w-4xl w-full">
-            <div class="flex justify-between items-center mb-6">
-                <div id="question-number" class="text-xs tracking-widest text-slate-500 font-bold uppercase"></div>
-                <div id="score-pill" class="bg-white/5 px-4 py-1 rounded-full text-[10px] font-bold tracking-tighter border border-white/10">SCORE: 0</div>
+    <header class="header-glow py-3 px-5">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="header-text text-base md:text-lg font-bold uppercase tracking-tight">Communication Skills</h1>
+            <div id="score-pill" class="bg-red-900/30 border border-red-500/40 px-3 py-1 rounded-full text-red-500 text-[10px] font-bold tracking-widest">
+                SCORE: 0
             </div>
+        </div>
+    </header>
 
-            <div class="relative mb-8">
-                <div id="question-text" class="text-xl md:text-2xl font-medium leading-relaxed mb-6"></div>
-                <button onclick="toggleHint()" class="absolute -right-2 -top-2 bulb-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6m-3-3V9m0 12a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"/></svg>
-                </button>
-                <div id="hint-text" class="hidden bg-white/5 p-4 rounded-sm text-sm text-slate-400 border-l-2 border-white/20 mb-4"></div>
-            </div>
-
-            <div id="options-container" class="grid gap-3 mb-10"></div>
-
-            <div class="flex justify-between items-center border-t border-white/5 pt-6">
-                <button id="prev-btn" onclick="prevQuestion()" class="text-xs font-bold tracking-widest text-slate-400 hover:text-white transition-colors uppercase">Previous</button>
-                <div class="flex-grow mx-8 h-[2px] bg-white/5 relative">
-                    <div id="progress-fill" class="absolute h-full bg-white transition-all duration-500" style="width: 0%"></div>
+    <main class="flex-grow container mx-auto px-4 max-w-xl py-6">
+        
+        <!-- Bebo Wrapper -->
+        <div class="bebo-wrapper">
+            <div id="bebo-bubble" class="bebo-bubble">يا هلا يا هلا</div>
+            <div id="bebo-robot" class="bebo-robot">
+                <div class="eyes-container">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
                 </div>
-                <button id="next-btn" onclick="nextQuestion()" disabled class="text-xs font-bold tracking-widest text-white hover:opacity-70 disabled:opacity-20 transition-all uppercase">Next Point</button>
             </div>
         </div>
 
-        <div id="result-view" class="hidden text-center max-w-md">
-            <h1 class="text-6xl font-bold mb-4 tracking-tighter" id="final-score">0%</h1>
-            <p id="result-message" class="text-slate-400 mb-8 leading-relaxed"></p>
-            <button onclick="restartQuiz()" class="border border-white/20 px-8 py-3 text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase">Try Again</button>
+        <div id="quiz-container">
+            <div class="progress-line">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+
+            <div class="flex justify-between items-center mb-3">
+                <button onclick="toggleHint()" class="text-blue-400 text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                    <i class="fas fa-lightbulb bulb-icon"></i> Reveal Hint
+                </button>
+                <div id="question-number" class="text-[9px] text-slate-500 uppercase font-bold"></div>
+            </div>
+            
+            <div id="hint-text" class="hidden bg-blue-500/10 border-l-4 border-blue-500 p-2.5 rounded-r-lg mb-4 text-[11px] text-slate-300 italic">
+            </div>
+
+            <div class="quiz-card">
+                <h2 id="question-text" class="text-sm md:text-base font-semibold leading-snug mb-2 text-white"></h2>
+                <p id="question-translation" class="text-[10px] text-slate-400 italic mb-5"></p>
+                <div id="options-container" class="grid gap-2.5"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 mt-5">
+                <button onclick="prevQuestion()" id="prev-btn" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5">
+                    <i class="fas fa-chevron-left mr-1"></i> Prev
+                </button>
+                <button onclick="nextQuestion()" class="bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-bold uppercase border border-white/5 order-2 md:order-2">
+                    Skip <i class="fas fa-forward ml-1"></i>
+                </button>
+                <button onclick="nextQuestion()" id="next-btn" class="bg-red-600 hover:bg-red-500 py-2 rounded-lg text-xs font-bold uppercase shadow-lg shadow-red-600/20 disabled:opacity-40 col-span-2 md:col-span-1 order-3 md:order-3">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </button>
+            </div>
         </div>
+
+        <!-- Result View -->
+        <div id="result-view" class="hidden text-center py-6">
+            <div class="text-4xl font-bold font-mono mb-1 text-white" id="final-score">0%</div>
+            <p class="text-slate-400 uppercase tracking-widest text-[9px] mb-6">Efficiency Accuracy</p>
+            
+            <div class="quiz-card mb-6">
+                <p id="result-message" class="text-sm font-medium text-emerald-400 italic" style="font-family: 'Tajawal'; direction: rtl;"></p>
+            </div>
+            
+            <button onclick="restartQuiz()" class="bg-white text-black px-8 py-2.5 rounded-full font-bold hover:scale-105 transition tracking-widest text-[10px]">RESTART TEST</button>
+        </div>
+
     </main>
+
+    <footer class="py-6 text-center mt-auto border-t border-white/5">
+        <p class="text-slate-600 text-[7px] uppercase tracking-[0.4em] mb-1.5">Developer</p>
+        <div class="bilal-signature">BILAL MOHAMED</div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
