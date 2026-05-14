@@ -181,29 +181,54 @@ body {
     }
 
     .bebo-wrapper {
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .bebo-bubble {
+        font-size: 0.75rem;
+        max-width: 95%;
+        padding: 6px 12px;
     }
 
     .bebo-robot {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
 
     .quiz-card {
-        padding: 0.75rem;
+        padding: 0.65rem;
     }
 
     .quiz-card h2 {
-        font-size: 0.8rem;
+        font-size: 0.72rem;
+        line-height: 1.2;
     }
 
     .quiz-card p {
-        font-size: 9px;
+        font-size: 8px;
+        margin-bottom: 0.75rem;
     }
 
     .option-btn {
-        font-size: 0.75rem;
-        padding: 0.625rem 0.75rem;
+        font-size: 0.72rem;
+        padding: 0.55rem 0.65rem;
+    }
+
+    .header-text {
+        font-size: 0.85rem;
+    }
+
+    #score-pill {
+        font-size: 7px;
+        padding: 0.45rem 0.65rem;
+    }
+
+    button {
+        font-size: 0.7rem;
+    }
+
+    .progress-line {
+        margin-bottom: 0.65rem;
     }
 
     .option-btn span:last-child {
