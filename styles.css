@@ -157,3 +157,83 @@ body {
     letter-spacing: 2px;
     font-weight: bold;
 }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 640px) {
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        padding: 0 0.5rem;
+    }
+
+    .header-glow {
+        padding: 0.85rem 0.9rem;
+    }
+
+    .header-text {
+        font-size: 0.95rem;
+    }
+
+    #score-pill {
+        font-size: 8px;
+        padding: 0.55rem 0.75rem;
+    }
+
+    .bebo-wrapper {
+        margin-bottom: 0.75rem;
+    }
+
+    .bebo-robot {
+        width: 48px;
+        height: 48px;
+    }
+
+    .quiz-card {
+        padding: 1rem;
+    }
+
+    .option-btn {
+        font-size: 0.8rem;
+        padding: 0.75rem 0.9rem;
+    }
+
+    .option-btn span:last-child {
+        word-break: break-word;
+    }
+
+    .option-btn span:first-child {
+        min-width: 34px;
+        min-height: 34px;
+    }
+
+    .progress-line {
+        margin-bottom: 0.6rem;
+    }
+
+    .bulb-icon {
+        font-size: 0.9rem;
+    }
+
+    #question-number,
+    #question-translation,
+    #hint-text,
+    .quiz-card p,
+    .quiz-card h2 {
+        font-size: 0.9rem;
+    }
+
+    #question-translation,
+    #hint-text {
+        font-size: 0.8rem;
+    }
+
+    .grid.grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .grid.grid-cols-2 > button,
+    .grid.grid-cols-2.md\:grid-cols-3 > button {
+        width: 100%;
+    }
+}

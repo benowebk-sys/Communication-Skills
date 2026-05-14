@@ -756,7 +756,7 @@ const quizData = [
     translation: "في التواصل المهني، يجب أن يتضمن 'التقييم' (Assessment) في SBAR البيانات والحقائق التي تم جمعها عن الموقف.",
     options: ["True", "False"],
     optionsTranslation: ["صحيح", "خطأ"],
-    answer: "True",
+    answer: "False",
     hintEN: "Assessment analyzes the situation using facts and data to inform the recommendation.",
     hintAR: "التقييم يحلل الموقف باستخدام الحقائق والبيانات لتوجيه التوصية."
   },
@@ -873,15 +873,17 @@ function setBebo(state, category) {
     
     robot.className = `bebo-robot ${state}`;
     
-    if (msgs && msgs.length > 0) {
-        bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-        bubble.classList.add('active');
-    } else {
-        bubble.classList.remove('active');
+    if (bubble) {
+        if (msgs && msgs.length > 0) {
+            bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
+            bubble.classList.add('active');
+        } else {
+            bubble.classList.remove('active');
+        }
     }
 
-    setTimeout(() => { 
-        bubble.classList.remove('active');
+    setTimeout(() => {
+        if (bubble) bubble.classList.remove('active');
         if(idx < quizData.length) robot.classList.remove('success', 'error');
     }, 4500);
 }
