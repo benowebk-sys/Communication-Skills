@@ -193,8 +193,16 @@ body {
         padding: 0.75rem;
     }
 
-    .option-btn {
+    .quiz-card h2 {
         font-size: 0.8rem;
+    }
+
+    .quiz-card p {
+        font-size: 9px;
+    }
+
+    .option-btn {
+        font-size: 0.75rem;
         padding: 0.625rem 0.75rem;
     }
 
