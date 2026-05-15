@@ -158,7 +158,7 @@ body {
     font-weight: bold;
 }
 /* Responsive adjustments for smaller screens */
-@media (max-width: 640px) {
+@media (max-width: 610px) {
     *, *::before, *::after {
         box-sizing: border-box;
     }
